@@ -114,8 +114,7 @@
 
     /* TIMELINE */
     .timeline { position: relative; }
-    .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding: 2rem 0; border-top: 1px solid var(--border); opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
-    .timeline-item.visible { opacity: 1; transform: translateY(0); }
+    .timeline-item { display: grid; grid-template-columns: 180px 1fr; gap: 2rem; padding: 2rem 0; border-top: 1px solid var(--border); opacity: 1; transform: translateY(0); }
     .timeline-date { font-family: var(--mono); font-size: .72rem; color: var(--muted); padding-top: .2rem; letter-spacing: .05em; line-height: 1.6; }
     .timeline-location { font-family: var(--mono); font-size: .65rem; color: var(--border); margin-top: .3rem; }
     .timeline-role { font-family: var(--mono); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
@@ -573,6 +572,3 @@
   function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (ent
