@@ -462,7 +462,7 @@
         <div class="contact-item-icon">✉️</div>
         <div>
           <div class="contact-item-label">E-Mail</div>
-          <div class="contact-item-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ea8f988e8f87888b998b98aa8d8792c48e8f">[email&#160;protected]</a></div>
+          <div class="contact-item-value" id="email-display"></div>
         </div>
       </div>
       <div class="contact-item">
@@ -549,7 +549,7 @@
       <div class="modal-title">${m.title}</div>
       <div class="modal-body">${m.body}</div>
       ${m.note ? `<div class="modal-note">ℹ️ ${m.note}</div>` : ''}
-      <a class="modal-dl-btn" href="lebenslauf-erdem-basar.pdf" target="_blank">⬇ Lebenslauf öffnen</a>
+      <a class="modal-dl-btn" id="pdf-btn" href="#">⬇ Lebenslauf öffnen</a>
     `;
     document.getElementById('modal-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -557,4 +557,17 @@
   function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalDirect(); }
   function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
+
+  // E-Mail vor Cloudflare-Schutz schützen
+  const u = 'erdembasar', d = 'gmx.de';
+  const emailEl = document.getElementById('email-display');
+  if (emailEl) emailEl.innerHTML = '<a href="mailto:' + u + '@' + d + '" style="color:var(--text);text-decoration:none;">' + u + '@' + d + '</a>';
+
+  // PDF-Button dynamisch setzen
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'pdf-btn') {
+      e.preventDefault();
+      window.open('https://erdem-basar.github.io/lebenslauf-erdem-basar.pdf', '_blank');
+    }
+  });
 
