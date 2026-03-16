@@ -463,7 +463,7 @@
         <div class="contact-item-icon">✉️</div>
         <div>
           <div class="contact-item-label">E-Mail</div>
-          <div class="contact-item-value">erdembasar@gmx.de</div>
+          <div class="contact-item-value"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ea8f988e8f87888b998b98aa8d8792c48e8f">[email&#160;protected]</a></div>
         </div>
       </div>
       <div class="contact-item">
@@ -511,7 +511,7 @@
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const modals = {
     'lebenslauf': {
       tag: 'Lebenslauf · PDF · 2026',
@@ -564,7 +564,7 @@
       <div class="modal-title">${m.title}</div>
       <div class="modal-body">${m.body}</div>
       ${m.note ? `<div class="modal-note">ℹ️ ${m.note}</div>` : ''}
-      <button class="modal-dl-btn" onclick="alert('Hinterlege hier den Link zu deinem Originaldokument.')">⬇ Dokument herunterladen</button>
+      <a class="modal-dl-btn" href="lebenslauf-erdem-basar.pdf" download>⬇ Lebenslauf herunterladen</a>
     `;
     document.getElementById('modal-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -575,10 +575,4 @@
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
-      if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 120);
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.timeline-item').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+      if (ent
