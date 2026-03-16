@@ -466,20 +466,6 @@
         </div>
       </div>
       <div class="contact-item">
-        <div class="contact-item-icon">📱</div>
-        <div>
-          <div class="contact-item-label">Telefon</div>
-          <div class="contact-item-value">0152 02868971</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-item-icon">📍</div>
-        <div>
-          <div class="contact-item-label">Adresse</div>
-          <div class="contact-item-value">Poststr. 7, 46236 Bottrop</div>
-        </div>
-      </div>
-      <div class="contact-item">
         <div class="contact-item-icon">🎂</div>
         <div>
           <div class="contact-item-label">Geburtsdatum</div>
@@ -563,7 +549,7 @@
       <div class="modal-title">${m.title}</div>
       <div class="modal-body">${m.body}</div>
       ${m.note ? `<div class="modal-note">ℹ️ ${m.note}</div>` : ''}
-      <a class="modal-dl-btn" href="lebenslauf-erdem-basar.pdf" download>⬇ Lebenslauf herunterladen</a>
+      <a class="modal-dl-btn" href="lebenslauf-erdem-basar.pdf" target="_blank">⬇ Lebenslauf öffnen</a>
     `;
     document.getElementById('modal-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
