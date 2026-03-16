@@ -462,7 +462,7 @@
         <div class="contact-item-icon">✉️</div>
         <div>
           <div class="contact-item-label">E-Mail</div>
-          <div class="contact-item-value" id="email-display"></div>
+          <div class="contact-item-value">erdembasar&#64;gmx.de</div>
         </div>
       </div>
       <div class="contact-item">
@@ -502,8 +502,9 @@
       tag: 'Lebenslauf · PDF · 2026',
       title: 'Tabellarischer Lebenslauf — Erdem Basar',
       body: `<p>Der vollständige tabellarische Lebenslauf mit allen Stationen, Kenntnissen und Kontaktdaten steht als PDF zum Download bereit.</p>
-             <p><strong style="color:#e2e8f0">Format:</strong> PDF, DIN A4<br><strong style="color:#e2e8f0">Stand:</strong> März 2026</p>`,
-      note: 'Tipp: Lade deine Lebenslauf-PDF hoch (z.B. bei Google Drive oder direkt ins GitHub-Repository) und verlinke sie hier als Download.'
+             <p><strong style="color:#e2e8f0">Format:</strong> PDF, DIN A4<br><strong style="color:#e2e8f0">Stand:</strong> März 2026</p>
+             <a class="modal-dl-btn" href="lebenslauf-erdem-basar.pdf" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;margin-top:1.5rem;font-family:monospace;font-size:.73rem;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1.6rem;background:#00e5ff;color:#000;font-weight:700;border-radius:3px;text-decoration:none;">⬇ Lebenslauf öffnen</a>`,
+      note: null
     },
     'schulzeugnis': {
       tag: 'Schulzeugnis · 2007',
@@ -549,7 +550,6 @@
       <div class="modal-title">${m.title}</div>
       <div class="modal-body">${m.body}</div>
       ${m.note ? `<div class="modal-note">ℹ️ ${m.note}</div>` : ''}
-      <a class="modal-dl-btn" id="pdf-btn" href="#">⬇ Lebenslauf öffnen</a>
     `;
     document.getElementById('modal-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -557,17 +557,4 @@
   function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalDirect(); }
   function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
-
-  // E-Mail vor Cloudflare-Schutz schützen
-  const u = 'erdembasar', d = 'gmx.de';
-  const emailEl = document.getElementById('email-display');
-  if (emailEl) emailEl.innerHTML = '<a href="mailto:' + u + '@' + d + '" style="color:var(--text);text-decoration:none;">' + u + '@' + d + '</a>';
-
-  // PDF-Button dynamisch setzen
-  document.addEventListener('click', function(e) {
-    if (e.target && e.target.id === 'pdf-btn') {
-      e.preventDefault();
-      window.open('https://erdem-basar.github.io/lebenslauf-erdem-basar.pdf', '_blank');
-    }
-  });
 
