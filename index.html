@@ -44,7 +44,10 @@
     .logo { font-family: var(--syne); font-weight: 800; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
+    .nav-links a { position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width .3s ease; }
     .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
 
     .hero { min-height: 100vh; display: flex; align-items: center; padding: 9rem 3rem 5rem; position: relative; overflow: hidden; }
     .hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(78,255,176,.06) 0%, transparent 70%), radial-gradient(ellipse 40% 40% at 20% 70%, rgba(14,165,233,.05) 0%, transparent 70%); }
@@ -66,6 +69,23 @@
     .btn-ghost { background: transparent; color: var(--text); border: 1px solid var(--border); }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
     @keyframes up { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeLeft { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes fadeRight { from { opacity:0; transform:translateX(30px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes scaleIn { from { opacity:0; transform:scale(.92); } to { opacity:1; transform:scale(1); } }
+    @keyframes glow { 0%,100%{ box-shadow:0 0 20px rgba(78,255,176,.05); } 50%{ box-shadow:0 0 40px rgba(78,255,176,.12); } }
+    @keyframes float { 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(-8px); } }
+    @keyframes shimmer { 0%{ background-position:-200% 0; } 100%{ background-position:200% 0; } }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-30px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(30px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale { opacity: 0; transform: scale(.92); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
 
     .section { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; }
     .section-label { font-family: var(--mono); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
@@ -83,10 +103,15 @@
     .tl-list li { font-size: .88rem; color: var(--muted); padding: .2rem 0 .2rem 1.3rem; position: relative; line-height: 1.65; }
     .tl-list li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: .65rem; top: .42rem; }
     .tl-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1rem; }
-    .tl-tag { font-family: var(--mono); font-size: .62rem; padding: .2rem .55rem; border-radius: 3px; background: rgba(78,255,176,.06); border: 1px solid rgba(78,255,176,.15); color: var(--accent); }
+    .tl-item { transition: transform .3s ease, border-color .3s ease; }
+    .tl-item:hover { transform: translateX(6px); border-top-color: rgba(78,255,176,.3); }
+    .tl-tag { font-family: var(--mono); font-size: .62rem; padding: .2rem .55rem; border-radius: 3px; background: rgba(78,255,176,.06); border: 1px solid rgba(78,255,176,.15); color: var(--accent); transition: all .25s ease; }
+    .tl-tag:hover { background: rgba(78,255,176,.15); border-color: var(--accent); transform: translateY(-2px); }
 
     .skill-row { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; padding: 1.2rem 0; border-top: 1px solid var(--border); align-items: center; }
     .skill-row:last-child { border-bottom: 1px solid var(--border); }
+    .skill-row { transition: transform .3s ease, background .3s ease; }
+    .skill-row:hover { transform: translateX(6px); background: rgba(78,255,176,.02); }
     .skill-row-label { font-family: var(--mono); font-size: .72rem; color: var(--muted); display: flex; align-items: center; gap: .5rem; }
     .skill-row-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
 
@@ -95,7 +120,8 @@
     .soft-item:hover { border-color: rgba(78,255,176,.3); color: var(--text); }
     .soft-item::before { content: '◆'; font-size: .45rem; color: var(--accent); flex-shrink: 0; }
 
-    .pdf-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .pdf-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease; }
+    .pdf-box:hover { border-color: rgba(78,255,176,.25); box-shadow: 0 8px 30px rgba(78,255,176,.06); transform: translateY(-3px); }
     .pdf-box h3 { font-family: var(--syne); font-weight: 700; font-size: 1.3rem; margin-bottom: .4rem; }
     .pdf-box p { font-size: .88rem; color: var(--muted); }
     .pdf-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -107,10 +133,12 @@
     .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
     .contact-intro { font-size: .95rem; color: var(--muted); margin-bottom: 2.5rem; line-height: 1.8; }
     .contact-row { display: flex; align-items: center; gap: 1.1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border); }
-    .contact-icon { width: 40px; height: 40px; flex-shrink: 0; background: rgba(78,255,176,.07); border: 1px solid rgba(78,255,176,.18); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .contact-icon { width: 40px; height: 40px; flex-shrink: 0; background: rgba(78,255,176,.07); border: 1px solid rgba(78,255,176,.18); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: transform .3s ease, background .3s ease; }
+    .contact-row:hover .contact-icon { transform: scale(1.1); background: rgba(78,255,176,.14); }
     .contact-lbl { font-family: var(--mono); font-size: .62rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
     .contact-val { font-size: .9rem; color: var(--text); }
-    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 2.2rem; font-size: .9rem; color: var(--muted); line-height: 1.9; }
+    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 2.2rem; font-size: .9rem; color: var(--muted); line-height: 1.9; transition: border-color .3s ease, box-shadow .3s ease; animation: glow 4s ease-in-out infinite; }
+    .contact-card:hover { border-color: rgba(78,255,176,.25); }
     .contact-card strong { color: var(--text); font-weight: 500; }
 
     footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; }
@@ -169,11 +197,11 @@
 
 <!-- BERUFSERFAHRUNG -->
 <div class="section" id="erfahrung">
-  <div class="section-label">// 01 · Werdegang</div>
-  <h2 class="section-title">Berufserfahrung</h2>
+  <div class="section-label reveal">// 01 · Werdegang</div>
+  <h2 class="section-title reveal">Berufserfahrung</h2>
   <div class="timeline">
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div><div class="tl-date">03/2026 — heute</div><div class="tl-loc">Skaylink GmbH</div></div>
       <div>
         <div class="tl-role">System Engineer <span style="font-family:var(--mono);font-size:.62rem;color:#000;background:var(--accent);padding:.15rem .5rem;border-radius:3px;margin-left:.5rem;vertical-align:middle;">NEU</span></div>
@@ -192,7 +220,7 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div><div class="tl-date">06/2025 — 03/2026</div><div class="tl-loc">Skaylink GmbH</div></div>
       <div>
         <div class="tl-role">IT Service Specialist</div>
@@ -211,7 +239,7 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div><div class="tl-date">01/2025 — 04/2025</div><div class="tl-loc">Essen</div></div>
       <div>
         <div class="tl-role">Kundenbetreuer Service &amp; Support Center</div>
@@ -227,7 +255,7 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div><div class="tl-date">05/2023 — 09/2024</div><div class="tl-loc">Essen</div></div>
       <div>
         <div class="tl-role">1st &amp; 2nd Level Support</div>
@@ -243,7 +271,7 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div><div class="tl-date">11/2022 — 04/2023</div><div class="tl-loc">Essen</div></div>
       <div>
         <div class="tl-role">Call Center Agent</div>
@@ -258,7 +286,7 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div><div class="tl-date">07/2017 — 07/2022</div><div class="tl-loc">Gelsenkirchen</div></div>
       <div>
         <div class="tl-role">Gerüstbauer</div>
@@ -271,7 +299,7 @@
       </div>
     </div>
 
-    <div class="tl-item">
+    <div class="tl-item reveal">
       <div><div class="tl-date">2010 — 2017</div><div class="tl-loc">Gelsenkirchen</div></div>
       <div>
         <div class="tl-role">Gerüstbauer</div>
@@ -291,51 +319,51 @@
 
 <!-- SKILLS -->
 <div class="section" id="skills">
-  <div class="section-label">// 02 · Kenntnisse</div>
-  <h2 class="section-title">Skills &amp; Technologien</h2>
+  <div class="section-label reveal">// 02 · Kenntnisse</div>
+  <h2 class="section-title reveal">Skills &amp; Technologien</h2>
   <div class="timeline">
 
-    <div class="skill-row">
+    <div class="skill-row reveal">
       <div class="skill-row-label">🖥️ Betriebssysteme</div>
       <div class="skill-row-tags"><span class="tl-tag">Windows 10 / 11</span><span class="tl-tag">Windows Server</span></div>
     </div>
 
-    <div class="skill-row">
+    <div class="skill-row reveal">
       <div class="skill-row-label">🔐 Identity &amp; Directory</div>
       <div class="skill-row-tags"><span class="tl-tag">Active Directory</span><span class="tl-tag">DNS / DHCP</span><span class="tl-tag">GPO</span><span class="tl-tag">User Management</span></div>
     </div>
 
-    <div class="skill-row">
+    <div class="skill-row reveal">
       <div class="skill-row-label">☁️ Cloud &amp; Office</div>
       <div class="skill-row-tags"><span class="tl-tag">Office 365</span><span class="tl-tag">M365</span><span class="tl-tag">Exchange</span><span class="tl-tag">Azure</span></div>
     </div>
 
-    <div class="skill-row">
+    <div class="skill-row reveal">
       <div class="skill-row-label">🌐 Netzwerk</div>
       <div class="skill-row-tags"><span class="tl-tag">Network Troubleshooting</span><span class="tl-tag">VPN Troubleshooting</span><span class="tl-tag">TCP/IP</span></div>
     </div>
 
-    <div class="skill-row">
+    <div class="skill-row reveal">
       <div class="skill-row-label">🗄️ Server &amp; Infrastruktur</div>
       <div class="skill-row-tags"><span class="tl-tag">File-Server</span><span class="tl-tag">Print-Server</span><span class="tl-tag">VMware</span><span class="tl-tag">Hyper-V</span></div>
     </div>
 
-    <div class="skill-row">
+    <div class="skill-row reveal">
       <div class="skill-row-label">🎫 Ticketsysteme</div>
       <div class="skill-row-tags"><span class="tl-tag">ServiceNow</span><span class="tl-tag">Remedy</span><span class="tl-tag">Tanss</span></div>
     </div>
 
-    <div class="skill-row">
+    <div class="skill-row reveal">
       <div class="skill-row-label">🖱️ Remote &amp; Tools</div>
       <div class="skill-row-tags"><span class="tl-tag">Remote Desktop</span><span class="tl-tag">Remote Desktop Manager</span><span class="tl-tag">Citrix Director</span></div>
     </div>
 
-    <div class="skill-row">
+    <div class="skill-row reveal">
       <div class="skill-row-label">🎧 Support</div>
       <div class="skill-row-tags"><span class="tl-tag">1st Level</span><span class="tl-tag">2nd Level</span><span class="tl-tag">3rd Level</span></div>
     </div>
 
-    <div class="skill-row">
+    <div class="skill-row reveal">
       <div class="skill-row-label">⚙️ Automation</div>
       <div class="skill-row-tags"><span class="tl-tag">PowerShell</span><span class="tl-tag">Batch / BAT</span></div>
     </div>
@@ -347,8 +375,8 @@
 
 <!-- BILDUNG & SOFT SKILLS -->
 <div class="section">
-  <div class="section-label">// 03 · Bildung &amp; Stärken</div>
-  <h2 class="section-title">Bildung &amp; Soft Skills</h2>
+  <div class="section-label reveal">// 03 · Bildung &amp; Stärken</div>
+  <h2 class="section-title reveal">Bildung &amp; Soft Skills</h2>
   <div class="tl-item" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
     <div><div class="tl-date">2002 — 2007</div><div class="tl-loc">Bottrop</div></div>
     <div>
@@ -357,16 +385,16 @@
     </div>
   </div>
   <div class="soft-grid">
-    <div class="soft-item">Strategisches Denken</div>
-    <div class="soft-item">Aktives Zuhören</div>
-    <div class="soft-item">Teamwork</div>
-    <div class="soft-item">Flexibilität</div>
-    <div class="soft-item">Präsentationsfähigkeit</div>
-    <div class="soft-item">Business-Verständnis</div>
-    <div class="soft-item">Motivation &amp; Ausdauer</div>
-    <div class="soft-item">Emotionale Intelligenz</div>
-    <div class="soft-item">Empathie</div>
-    <div class="soft-item">Führungsqualität</div>
+    <div class="soft-item reveal">Strategisches Denken</div>
+    <div class="soft-item reveal">Aktives Zuhören</div>
+    <div class="soft-item reveal">Teamwork</div>
+    <div class="soft-item reveal">Flexibilität</div>
+    <div class="soft-item reveal">Präsentationsfähigkeit</div>
+    <div class="soft-item reveal">Business-Verständnis</div>
+    <div class="soft-item reveal">Motivation &amp; Ausdauer</div>
+    <div class="soft-item reveal">Emotionale Intelligenz</div>
+    <div class="soft-item reveal">Empathie</div>
+    <div class="soft-item reveal">Führungsqualität</div>
   </div>
 </div>
 
@@ -374,9 +402,9 @@
 
 <!-- PROJEKTE -->
 <div class="section" id="projekte">
-  <div class="section-label">// 04 · Eigene Projekte</div>
-  <h2 class="section-title">Open Source Projekt</h2>
-  <div class="pdf-box" style="flex-direction:column; align-items:flex-start; gap:2rem;">
+  <div class="section-label reveal">// 04 · Eigene Projekte</div>
+  <h2 class="section-title reveal">Open Source Projekt</h2>
+  <div class="pdf-box reveal-scale" style="flex-direction:column; align-items:flex-start; gap:2rem;">
     <div style="display:flex; justify-content:space-between; align-items:flex-start; width:100%; flex-wrap:wrap; gap:1rem;">
       <div>
         <div style="display:flex; align-items:center; gap:.75rem; margin-bottom:.5rem;">
@@ -417,9 +445,9 @@
 
 <!-- LEBENSLAUF -->
 <div class="section" id="lebenslauf">
-  <div class="section-label">// 05 · Dokument</div>
-  <h2 class="section-title">Lebenslauf als PDF</h2>
-  <div class="pdf-box">
+  <div class="section-label reveal">// 05 · Dokument</div>
+  <h2 class="section-title reveal">Lebenslauf als PDF</h2>
+  <div class="pdf-box reveal-scale">
     <div>
       <h3>Tabellarischer Lebenslauf</h3>
       <p>Erdem Basar &nbsp;·&nbsp; System Engineer &nbsp;·&nbsp; Stand März 2026</p>
@@ -435,9 +463,9 @@
 
 <!-- DOKUMENTE -->
 <div class="section" id="dokumente">
-  <div class="section-label">// 06 · Nachweise</div>
-  <h2 class="section-title">Zeugnisse &amp; Dokumente</h2>
-  <div class="pdf-box">
+  <div class="section-label reveal">// 06 · Nachweise</div>
+  <h2 class="section-title reveal">Zeugnisse &amp; Dokumente</h2>
+  <div class="pdf-box reveal-scale">
     <div>
       <h3>Arbeitszeugnis — everience GmbH</h3>
       <p>Service Desk Agent L1 &nbsp;·&nbsp; 05/2023 – 09/2024 &nbsp;·&nbsp; Ausgestellt 30.09.2024</p>
@@ -453,9 +481,9 @@
 
 <!-- KONTAKT -->
 <div class="section" id="kontakt">
-  <div class="section-label">// 07 · Kontakt</div>
-  <h2 class="section-title">Offen für neue<br>Herausforderungen</h2>
-  <div class="contact-wrap">
+  <div class="section-label reveal">// 07 · Kontakt</div>
+  <h2 class="section-title reveal">Offen für neue<br>Herausforderungen</h2>
+  <div class="contact-wrap reveal">
     <div>
       <p class="contact-intro">Ich suche eine neue Position im Bereich IT-Administration oder System Engineering im Raum Bottrop / Ruhrgebiet. Melden Sie sich gerne per E-Mail.</p>
       <div class="contact-row">
@@ -492,4 +520,65 @@
 
 <footer>
   <p>© 2026 Erdem Basar<span class="dot">·</span>System Engineer<span class="dot">·</span>Bottrop</p>
-  <p>erdem
+  <p><a href="https://github.com/erdem-basar" target="_blank" style="color:var(--muted);text-decoration:none;transition:color .2s;">github.com/erdem-basar</a></p>
+</footer>
+
+<script>
+// Scroll reveal with stagger
+(function() {
+  var reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        // Stagger siblings
+        var parent = entry.target.parentElement;
+        var siblings = parent.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+        var idx = Array.from(siblings).indexOf(entry.target);
+        var delay = Math.min(idx * 80, 400);
+        entry.target.style.transitionDelay = delay + 'ms';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { observer.observe(el); });
+
+  // Parallax on hero background
+  var heroBg = document.querySelector('.hero-bg');
+  if (heroBg) {
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      if (y < 1200) {
+        heroBg.style.transform = 'translateY(' + (y * 0.3) + 'px)';
+      }
+    }, { passive: true });
+  }
+
+  // Magnetic effect on hero buttons
+  var btns = document.querySelectorAll('.hero-btns .btn');
+  btns.forEach(function(btn) {
+    btn.addEventListener('mousemove', function(e) {
+      var rect = btn.getBoundingClientRect();
+      var x = e.clientX - rect.left - rect.width / 2;
+      var y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = 'translate(' + (x * 0.15) + 'px, ' + (y * 0.15) + 'px)';
+    });
+    btn.addEventListener('mouseleave', function() {
+      btn.style.transform = '';
+    });
+  });
+
+  // Typing cursor on hero role
+  var role = document.querySelector('.hero-role');
+  if (role) {
+    role.style.borderRight = '2px solid var(--accent)';
+    role.style.display = 'inline-block';
+    role.style.animation = 'up .7s .2s ease both';
+    setInterval(function() {
+      role.style.borderRightColor = role.style.borderRightColor === 'transparent' ? 'var(--accent)' : 'transparent';
+    }, 530);
+  }
+})();
+</script>
+</body>
+</html>
