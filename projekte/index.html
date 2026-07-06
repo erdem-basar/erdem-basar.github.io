@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projekte &amp; Homelab — Erdem Basar</title>
+  <meta name="description" content="Selbst entwickelte Software und produktive Homelab-Infrastruktur von Erdem Basar: Docker-Stack mit 37 Containern, Cloudflare Tunnel, Authelia 2FA, restic-Backups sowie vier eigene FastAPI-Anwendungen.">
+  <meta name="author" content="Erdem Basar">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://erdembasar.de/projekte/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projekte &amp; Homelab — Erdem Basar">
+  <meta property="og:description" content="37 Container in Produktion, vier selbst entwickelte Web-Apps, Zero-Trust-Zugriff und automatisierte Backups — mit Screenshots.">
+  <meta property="og:url" content="https://erdembasar.de/projekte/">
+  <meta property="og:image" content="https://erdembasar.de/projekte/img/homelab-glance.webp">
+  <meta property="og:locale" content="de_DE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Projekte &amp; Homelab — Erdem Basar">
+  <meta name="twitter:description" content="37 Container in Produktion, vier selbst entwickelte Web-Apps, Zero-Trust-Zugriff und automatisierte Backups.">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Mulish:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #07090d; --surface: #0d1117; --card: #111620;
+      --border: #1c2333; --accent: #4fffb0; --text: #dce6f0;
+      --muted: #556070; --syne: 'Syne', sans-serif;
+      --mono: 'IBM Plex Mono', monospace; --body: 'Mulish', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--body); font-weight: 300; line-height: 1.75; overflow-x: hidden; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 99; display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 3rem; background: rgba(7,9,13,.94); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .logo { font-family: var(--syne); font-weight: 800; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { font-family: var(--mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width .3s ease; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--accent); }
+    .nav-links a.active::after { width: 100%; }
+
+    @keyframes up { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.25;} }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-scale { opacity: 0; transform: scale(.95); transition: opacity .6s ease, transform .6s ease; }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal, .reveal-scale { opacity: 1; transform: none; transition: none; }
+      .cursor { animation: none !important; }
+      * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+
+    .section { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; }
+    .section-label { font-family: var(--mono); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: .75rem; }
+    .section-title { font-family: var(--syne); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.2rem; letter-spacing: -.02em; }
+    .section-desc { font-size: .95rem; color: var(--muted); max-width: 720px; margin-bottom: 3rem; line-height: 1.8; }
+    .section-desc strong, .proj-desc strong { color: var(--text); font-weight: 500; }
+    .divider { height: 1px; background: var(--border); max-width: 1200px; margin: 0 auto; }
+
+    /* ── Hero ─────────────────────────────────────── */
+    .hero { padding: 10rem 3rem 5rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.1fr .9fr; gap: 4rem; align-items: center; position: relative; }
+    .hero h1 { font-family: var(--syne); font-size: clamp(2.6rem, 5.5vw, 4.2rem); font-weight: 800; line-height: 1.05; letter-spacing: -.03em; margin-bottom: 1.2rem; animation: up .7s .05s ease both; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-eyebrow { font-family: var(--mono); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; animation: up .7s ease both; }
+    .hero-desc { font-size: .98rem; color: var(--muted); max-width: 460px; margin-bottom: 2.2rem; animation: up .7s .15s ease both; }
+    .hero-stats { display: flex; flex-wrap: wrap; gap: .5rem; animation: up .7s .25s ease both; }
+    .stat-pill { font-family: var(--mono); font-size: .65rem; letter-spacing: .08em; padding: .35rem .85rem; border-radius: 100px; border: 1px solid var(--border); color: var(--muted); }
+    .stat-pill b { color: var(--accent); font-weight: 500; }
+
+    /* Signatur: Terminal des Live-Stacks */
+    .term { background: #0a0e14; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.5); animation: up .7s .3s ease both; }
+    .term-bar { display: flex; align-items: center; gap: .45rem; padding: .7rem 1rem; background: var(--card); border-bottom: 1px solid var(--border); }
+    .term-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); }
+    .term-dot:nth-child(1) { background: #ff5f57; } .term-dot:nth-child(2) { background: #febc2e; } .term-dot:nth-child(3) { background: #28c840; }
+    .term-title { font-family: var(--mono); font-size: .62rem; color: var(--muted); margin-left: .5rem; letter-spacing: .05em; }
+    .term-body { padding: 1.2rem 1.3rem 1.4rem; font-family: var(--mono); font-size: .68rem; line-height: 1.9; color: var(--muted); overflow-x: auto; }
+    .term-body .cmd { color: var(--text); }
+    .term-body .cmd::before { content: '❯ '; color: var(--accent); }
+    .term-body .ok { color: var(--accent); }
+    .term-body .dim { color: #3a4456; }
+    .term-body table { border-collapse: collapse; white-space: nowrap; }
+    .term-body td { padding: 0 1.4rem 0 0; }
+    .cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent); vertical-align: -2px; animation: blink 1.1s step-end infinite; }
+
+    /* ── Projekt-Layout ───────────────────────────── */
+    .proj-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .proj-links { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .btn { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; padding: .75rem 1.6rem; border-radius: 6px; text-decoration: none; transition: all .2s; display: inline-block; }
+    .btn-primary { background: var(--accent); color: #000; font-weight: 500; }
+    .btn-primary:hover { background: #fff; box-shadow: 0 0 40px rgba(78,255,176,.3); }
+    .btn-ghost { background: transparent; color: var(--accent); border: 1px solid rgba(78,255,176,.4); }
+    .btn-ghost:hover { background: rgba(78,255,176,.08); }
+
+    /* Browser-Frame um Screenshots */
+    .shot-frame { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; transition: border-color .3s ease, box-shadow .3s ease; }
+    .shot-frame:hover { border-color: rgba(78,255,176,.25); box-shadow: 0 12px 40px rgba(78,255,176,.06); }
+    .shot-bar { display: flex; align-items: center; gap: .45rem; padding: .65rem 1rem; border-bottom: 1px solid var(--border); }
+    .shot-url { font-family: var(--mono); font-size: .62rem; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: .2rem .8rem; margin-left: .5rem; letter-spacing: .04em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .shot-url .lock { color: var(--accent); margin-right: .4rem; }
+    .shot-frame img { display: block; width: 100%; height: auto; }
+    .shot-thumbs { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .75rem; margin-top: .9rem; }
+    .thumb { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; padding: 0; cursor: pointer; transition: border-color .2s, transform .2s; }
+    .thumb:hover { border-color: rgba(78,255,176,.4); transform: translateY(-2px); }
+    .thumb[aria-pressed="true"] { border-color: var(--accent); }
+    .thumb img { display: block; width: 100%; height: auto; opacity: .75; transition: opacity .2s; }
+    .thumb:hover img, .thumb[aria-pressed="true"] img { opacity: 1; }
+    .thumb-label { display: block; font-family: var(--mono); font-size: .58rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: .45rem .6rem; text-align: left; }
+    .thumb[aria-pressed="true"] .thumb-label { color: var(--accent); }
+
+    .proj-grid { display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; align-items: start; margin-top: 2.5rem; }
+    .proj-facts { display: flex; flex-direction: column; gap: 1.6rem; position: sticky; top: 6rem; }
+    .fact-label { font-family: var(--mono); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: .6rem; }
+    .fact-list { list-style: none; }
+    .fact-list li { font-size: .85rem; color: var(--muted); padding: .18rem 0 .18rem 1.3rem; position: relative; line-height: 1.6; }
+    .fact-list li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); font-size: .62rem; top: .35rem; }
+    .fact-list li strong { color: var(--text); font-weight: 500; }
+    .tl-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tl-tag { font-family: var(--mono); font-size: .62rem; padding: .2rem .55rem; border-radius: 3px; background: rgba(78,255,176,.06); border: 1px solid rgba(78,255,176,.15); color: var(--accent); transition: all .25s ease; }
+    .tl-tag:hover { background: rgba(78,255,176,.15); border-color: var(--accent); transform: translateY(-2px); }
+
+    /* Karte für Projekte ohne großes Bild */
+    .mini-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 2.2rem; transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease; }
+    .mini-card:hover { border-color: rgba(78,255,176,.25); box-shadow: 0 8px 30px rgba(78,255,176,.06); transform: translateY(-3px); }
+    .mini-card h3 { font-family: var(--syne); font-weight: 700; font-size: 1.15rem; margin-bottom: .5rem; }
+    .mini-card p { font-size: .88rem; color: var(--muted); margin-bottom: 1.2rem; }
+
+    /* CTA */
+    .cta-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+    .cta-box h3 { font-family: var(--syne); font-weight: 700; font-size: 1.3rem; margin-bottom: .4rem; }
+    .cta-box p { font-size: .88rem; color: var(--muted); }
+
+    footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; }
+    footer p { font-family: var(--mono); font-size: .68rem; color: var(--muted); }
+    .dot { color: var(--accent); margin: 0 .5rem; }
+    footer a { color: var(--muted); text-decoration: none; transition: color .2s; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; padding-top: 8rem; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .proj-facts { position: static; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; } .nav-links { display: none; }
+      .hero { padding: 7rem 1.5rem 3.5rem; }
+      .section { padding: 4rem 1.5rem; }
+      .cta-box { flex-direction: column; align-items: flex-start; }
+      footer { flex-direction: column; gap: .5rem; text-align: center; padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">EB</a>
+  <ul class="nav-links">
+    <li><a href="/#erfahrung">Erfahrung</a></li>
+    <li><a href="/#skills">Skills</a></li>
+    <li><a href="/projekte/" class="active" aria-current="page">Projekte</a></li>
+    <li><a href="/#lebenslauf">Lebenslauf</a></li>
+    <li><a href="/#dokumente">Dokumente</a></li>
+    <li><a href="/#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div>
+    <div class="hero-eyebrow">// Portfolio · Alles läuft produktiv</div>
+    <h1>Projekte &amp;<br><em>Homelab</em></h1>
+    <p class="hero-desc">Keine Übungsprojekte: Dieser Stack läuft rund um die Uhr auf eigener Hardware — vier selbst entwickelte Web-Apps, Zero-Trust-Zugriff über Cloudflare, automatisierte Backups und Monitoring mit Push-Alerts aufs Handy.</p>
+    <div class="hero-stats">
+      <span class="stat-pill"><b>37</b> Container</span>
+      <span class="stat-pill"><b>4</b> eigene Apps</span>
+      <span class="stat-pill"><b>24/7</b> Monitoring</span>
+      <span class="stat-pill"><b>2×</b> tägliche Backups</span>
+    </div>
+  </div>
+  <div class="term" aria-label="Terminal-Ausgabe: docker compose ps">
+    <div class="term-bar">
+      <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+      <span class="term-title">powershell — docker</span>
+    </div>
+    <div class="term-body">
+      <div class="cmd">docker compose ps</div>
+      <table aria-hidden="true">
+        <tr><td class="dim">NAME</td><td class="dim">STATUS</td><td class="dim">PORT</td></tr>
+        <tr><td>streaming_tools</td><td class="ok">Up (healthy)</td><td>:8081</td></tr>
+        <tr><td>edoeasy_live</td><td class="ok">Up (healthy)</td><td>:8082</td></tr>
+        <tr><td>predecessor_inhouse</td><td class="ok">Up (healthy)</td><td>:8094</td></tr>
+        <tr><td>preis_alarm_web</td><td class="ok">Up (healthy)</td><td>:8080</td></tr>
+        <tr><td>vaultwarden</td><td class="ok">Up (healthy)</td><td>:8083</td></tr>
+        <tr><td class="dim" colspan="3">caddy · authelia · cloudflared · n8n · ntfy</td></tr>
+        <tr><td class="dim" colspan="3">paperless · seafile · uptime_kuma · glance …</td></tr>
+      </table>
+      <div><span class="ok">37 running</span> <span class="dim">· 0 stopped</span> <span class="cursor" aria-hidden="true"></span></div>
+    </div>
+  </div>
+</header>
+
+<div class="divider"></div>
+
+<!-- 01 HOMELAB -->
+<section class="section" id="homelab">
+  <div class="section-label reveal">// 01 · Infrastruktur</div>
+  <h2 class="section-title reveal">Homelab — Self-Hosted Stack</h2>
+  <p class="section-desc reveal">37 Docker-Container in Produktion: Passwort-Manager, Dokumenten-Management mit OCR, Datei-Cloud, Workflow-Automation und die eigenen Apps — alle Dienste öffentlich erreichbar <strong>ohne ein einziges offenes Port-Forwarding</strong>. Der Traffic läuft durch einen Cloudflare Tunnel, sensible Dienste liegen zusätzlich hinter einem eigenen 2FA-Login-Portal (Authelia, TOTP).</p>
+
+  <div class="proj-grid reveal-scale">
+    <div>
+      <div class="shot-frame">
+        <div class="shot-bar">
+          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+          <span class="shot-url" data-url><span class="lock">●</span>dashboard.erdembasar.de</span>
+        </div>
+        <img data-main src="img/homelab-glance.webp" alt="Glance-Dashboard des Homelabs: Uptime-Status aller Dienste, Kalender, Wetter und Tech-News auf einen Blick" width="1600" height="1000">
+      </div>
+      <div class="shot-thumbs" role="group" aria-label="Weitere Screenshots: Homelab">
+        <button class="thumb" type="button" aria-pressed="true" data-src="img/homelab-glance.webp" data-shoturl="dashboard.erdembasar.de" data-alt="Glance-Dashboard des Homelabs: Uptime-Status aller Dienste, Kalender, Wetter und Tech-News auf einen Blick">
+          <img src="img/homelab-glance.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Glance Dashboard</span>
+        </button>
+        <button class="thumb" type="button" aria-pressed="false" data-src="img/homelab-dozzle.webp" data-shoturl="logs · dozzle (LAN)" data-alt="Dozzle-Übersicht: 37 laufende Container mit Live-CPU- und RAM-Metriken">
+          <img src="img/homelab-dozzle.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Container-Logs (Dozzle)</span>
+        </button>
+      </div>
+    </div>
+    <aside class="proj-facts">
+      <div>
+        <div class="fact-label">Highlights</div>
+        <ul class="fact-list">
+          <li><strong>Zero-Trust-Zugriff:</strong> Cloudflare Tunnel + Authelia-2FA-Portal, Reverse-Proxy mit Caddy (forward_auth)</li>
+          <li><strong>Backups:</strong> restic verschlüsselt auf zwei Ziele (lokal + Cloudflare R2), konsistente DB-Dumps, Restore-Tests, Dead-Man-Switch via Healthchecks</li>
+          <li><strong>Security-Alerts:</strong> PowerShell-Task wertet Windows-Event-Log und Container-Logs aus → Push aufs Handy mit „IP bannen“-Button, der Angreifer per n8n-Webhook direkt auf der Cloudflare-Edge sperrt</li>
+          <li><strong>Monitoring:</strong> Uptime Kuma, Beszel-Metriken, Dozzle-Logs, ntopng-Traffic-Analyse pro Container</li>
+          <li><strong>Wartung:</strong> Image-Update-Alerts (Diun), zentrale Log-Rotation, Healthchecks je Service</li>
+        </ul>
+      </div>
+      <div>
+        <div class="fact-label">Tech-Stack</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Docker Compose</span><span class="tl-tag">Cloudflare Tunnel</span><span class="tl-tag">Caddy</span><span class="tl-tag">Authelia 2FA</span><span class="tl-tag">restic</span><span class="tl-tag">Cloudflare R2</span><span class="tl-tag">n8n</span><span class="tl-tag">ntfy</span><span class="tl-tag">PowerShell</span><span class="tl-tag">Vaultwarden</span><span class="tl-tag">Paperless-ngx</span><span class="tl-tag">Seafile</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 02 STREAMINGTOOLS -->
+<section class="section" id="streamingtools">
+  <div class="proj-head">
+    <div>
+      <div class="section-label reveal">// 02 · Eigene Entwicklung</div>
+      <h2 class="section-title reveal">StreamingTools — Twitch Command Center</h2>
+    </div>
+  </div>
+  <p class="section-desc reveal">Meine größte Eigenentwicklung: eine Web-App, die einen kompletten Twitch-Kanal datengetrieben steuert. Sie sammelt rund um die Uhr Marktdaten über die Twitch-API, berechnet die besten Sendezeiten aus tausenden Messpunkten und verwaltet Titel, Kategorie und Tags live über EventSub — inklusive KI-Titel-Generator, automatischer Clip-Erkennung bei Chat-Hype und Discord-Ankündigungen.</p>
+
+  <div class="proj-grid reveal-scale">
+    <div>
+      <div class="shot-frame">
+        <div class="shot-bar">
+          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+          <span class="shot-url" data-url><span class="lock">●</span>streamingtools — Dashboard</span>
+        </div>
+        <img data-main src="img/streamingtools-dashboard.webp" alt="StreamingTools-Dashboard: Live-Status, Kennzahlen, beste Streaming-Zeit und System-Status der Bots" width="1600" height="1000">
+      </div>
+      <div class="shot-thumbs" role="group" aria-label="Weitere Screenshots: StreamingTools">
+        <button class="thumb" type="button" aria-pressed="true" data-src="img/streamingtools-dashboard.webp" data-shoturl="streamingtools — Dashboard" data-alt="StreamingTools-Dashboard: Live-Status, Kennzahlen, beste Streaming-Zeit und System-Status der Bots">
+          <img src="img/streamingtools-dashboard.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Dashboard</span>
+        </button>
+        <button class="thumb" type="button" aria-pressed="false" data-src="img/streamingtools-stream-manager.webp" data-shoturl="streamingtools — Stream Manager" data-alt="Stream Manager: Titel, Kategorie und Tags live per Twitch-API ändern, Presets und Activity-Feed über EventSub">
+          <img src="img/streamingtools-stream-manager.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Stream Manager</span>
+        </button>
+        <button class="thumb" type="button" aria-pressed="false" data-src="img/streamingtools-timing.webp" data-shoturl="streamingtools — Timing Optimizer" data-alt="Stream Timing Optimizer: Discovery-Heatmap über Wochentage und Uhrzeiten aus 3382 gesammelten Datenpunkten">
+          <img src="img/streamingtools-timing.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Timing-Heatmap</span>
+        </button>
+        <button class="thumb" type="button" aria-pressed="false" data-src="img/streamingtools-growth.webp" data-shoturl="streamingtools — Growth Tracker" data-alt="Growth Tracker: Zuschauer-Trends über 30 Sessions mit Wochenauswertung">
+          <img src="img/streamingtools-growth.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Growth Tracker</span>
+        </button>
+        <button class="thumb" type="button" aria-pressed="false" data-src="img/streamingtools-trend-radar.webp" data-shoturl="streamingtools — Trend Radar" data-alt="Trend Radar: Twitch-Kategorien nach Zuschauer-pro-Stream-Verhältnis, live aus der Twitch-API">
+          <img src="img/streamingtools-trend-radar.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Trend Radar</span>
+        </button>
+      </div>
+    </div>
+    <aside class="proj-facts">
+      <div>
+        <div class="fact-label">Highlights</div>
+        <ul class="fact-list">
+          <li><strong>Timing Optimizer:</strong> Heatmap der besten Sendezeiten aus tausenden automatisch gesammelten Viewer/Streamer-Messpunkten</li>
+          <li><strong>Stream Manager:</strong> Titel, Kategorie, Tags, Predictions und Werbung direkt aus der App — Events in Echtzeit über Twitch EventSub</li>
+          <li><strong>Clip Highlighter:</strong> erkennt Hype-Momente im Chat und erstellt automatisch Clips</li>
+          <li><strong>KI-Titel-Generator:</strong> Vorschläge auf Basis der aktuell erfolgreichsten Streams der Kategorie</li>
+          <li><strong>Raid-Tools:</strong> Raid-Kandidaten nach Größe, Sprache und Raid-Historie bewertet</li>
+        </ul>
+      </div>
+      <div>
+        <div class="fact-label">Tech-Stack</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Python</span><span class="tl-tag">FastAPI</span><span class="tl-tag">SQLite</span><span class="tl-tag">Twitch API</span><span class="tl-tag">EventSub / WebSocket</span><span class="tl-tag">OAuth 2.0</span><span class="tl-tag">Discord Webhooks</span><span class="tl-tag">Docker</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 03 PREISALARM -->
+<section class="section" id="preisalarm">
+  <div class="proj-head">
+    <div>
+      <div class="section-label reveal">// 03 · Open Source</div>
+      <h2 class="section-title reveal">PreisAlarm — Preis-Tracking</h2>
+    </div>
+    <div class="proj-links reveal">
+      <a href="https://preisalarm.erdembasar.de" target="_blank" rel="noopener" class="btn btn-primary">Webtool öffnen</a>
+      <a href="https://github.com/erdem-basar/price-alert-tracker" target="_blank" rel="noopener" class="btn btn-ghost">⬡ GitHub</a>
+    </div>
+  </div>
+  <p class="section-desc reveal">Überwacht Wunschprodukte automatisch über Geizhals, PriceSpy &amp; Amazon und meldet Preisstürze per E-Mail, Discord und Web-Push. Gibt es in zwei Ausführungen: als <strong>Open-Source-Windows-App</strong> (MIT-Lizenz) und als <strong>selbst gehostetes Webtool</strong> mit Multi-User-Login, Preisverlauf und Budget-Suche.</p>
+
+  <div class="proj-grid reveal-scale">
+    <div>
+      <div class="shot-frame">
+        <div class="shot-bar">
+          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+          <span class="shot-url" data-url><span class="lock">●</span>preisalarm.erdembasar.de</span>
+        </div>
+        <img data-main src="img/preisalarm-landing.webp" alt="PreisAlarm-Startseite: Nie wieder den besten Preis verpassen — kostenlos und Open Source" width="1600" height="1000">
+      </div>
+      <div class="shot-thumbs" role="group" aria-label="Weitere Screenshots: PreisAlarm">
+        <button class="thumb" type="button" aria-pressed="true" data-src="img/preisalarm-landing.webp" data-shoturl="preisalarm.erdembasar.de" data-alt="PreisAlarm-Startseite: Nie wieder den besten Preis verpassen — kostenlos und Open Source">
+          <img src="img/preisalarm-landing.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Landingpage</span>
+        </button>
+        <button class="thumb" type="button" aria-pressed="false" data-src="img/preisalarm-dashboard.webp" data-shoturl="preisalarm.erdembasar.de/dashboard" data-alt="PreisAlarm-Dashboard: aktive Alerts mit bestem Preis, Zielpreis und Preisdrop-Zähler">
+          <img src="img/preisalarm-dashboard.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Alert-Dashboard</span>
+        </button>
+      </div>
+    </div>
+    <aside class="proj-facts">
+      <div>
+        <div class="fact-label">Highlights</div>
+        <ul class="fact-list">
+          <li><strong>Scraping-Engine:</strong> Selenium + Chromium headless prüft über 50 Shops im konfigurierbaren Intervall (APScheduler)</li>
+          <li><strong>Benachrichtigungen:</strong> E-Mail, Discord-Webhook und Web-Push (VAPID) — auch als installierbare PWA</li>
+          <li><strong>Preisverlauf &amp; Prognose:</strong> Charts pro Produkt, KI-gestützte Kaufempfehlung</li>
+          <li><strong>Multi-User:</strong> Registrierung, Passwort-Reset, Admin-Bereich, CSRF-Schutz</li>
+        </ul>
+      </div>
+      <div>
+        <div class="fact-label">Tech-Stack</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Python</span><span class="tl-tag">FastAPI</span><span class="tl-tag">Selenium</span><span class="tl-tag">APScheduler</span><span class="tl-tag">Web Push / PWA</span><span class="tl-tag">Docker</span><span class="tl-tag">MIT License</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 04 INHOUSE LEAGUE -->
+<section class="section" id="inhouse">
+  <div class="proj-head">
+    <div>
+      <div class="section-label reveal">// 04 · Community-Plattform</div>
+      <h2 class="section-title reveal">Predecessor Inhouse League</h2>
+    </div>
+    <div class="proj-links reveal">
+      <a href="https://inhouse.edoeasy.live" target="_blank" rel="noopener" class="btn btn-primary">Live ansehen</a>
+    </div>
+  </div>
+  <p class="section-desc reveal">Komplette Liga-Plattform für Community-Matches im MOBA Predecessor: Spieler stellen sich per Discord-Befehl in die Queue, ein <strong>eingebetteter Discord-Bot</strong> baut automatisch faire 5v5-Teams mit minimaler MMR-Differenz, Ergebnisse fließen in ein <strong>Glicko-2-Rating</strong> — das Leaderboard und alle Spielerprofile sind öffentlich auf der Website.</p>
+
+  <div class="proj-grid reveal-scale">
+    <div>
+      <div class="shot-frame">
+        <div class="shot-bar">
+          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+          <span class="shot-url" data-url><span class="lock">●</span>inhouse.edoeasy.live</span>
+        </div>
+        <img data-main src="img/inhouse-league.webp" alt="Inhouse League Startseite: Forge your rank in the arena — 5v5 Predecessor-Liga mit Glicko-2-Rating" width="1600" height="1000" loading="lazy" decoding="async">
+      </div>
+    </div>
+    <aside class="proj-facts">
+      <div>
+        <div class="fact-label">Highlights</div>
+        <ul class="fact-list">
+          <li><strong>Ein Prozess, zwei Rollen:</strong> discord.py-Bot läuft als asyncio-Task im FastAPI-Lifespan — gleicher Event-Loop, gemeinsame Datenbank</li>
+          <li><strong>Matchmaking:</strong> Team-Balance per Brute-Force-Suche nach minimaler MMR-Differenz, Ready-Check im Channel</li>
+          <li><strong>Glicko-2 selbst implementiert</strong> und gegen das Referenzbeispiel des Erfinders verifiziert</li>
+          <li><strong>Draft-System:</strong> Pick/Ban-Seiten mit Zuschauer-Ansicht und OBS-Overlay für Streams</li>
+          <li><strong>Admin per Twitch-OAuth:</strong> Login-Whitelist statt Passwörter</li>
+        </ul>
+      </div>
+      <div>
+        <div class="fact-label">Tech-Stack</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Python</span><span class="tl-tag">FastAPI</span><span class="tl-tag">discord.py</span><span class="tl-tag">Glicko-2</span><span class="tl-tag">SQLite</span><span class="tl-tag">Twitch OAuth</span><span class="tl-tag">Docker</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 05 EDOEASY.LIVE -->
+<section class="section" id="edoeasylive">
+  <div class="proj-head">
+    <div>
+      <div class="section-label reveal">// 05 · Web-Auftritt</div>
+      <h2 class="section-title reveal">edoeasy.live — Streamer-Hub</h2>
+    </div>
+    <div class="proj-links reveal">
+      <a href="https://edoeasy.live" target="_blank" rel="noopener" class="btn btn-primary">Live ansehen</a>
+    </div>
+  </div>
+  <p class="section-desc reveal">Zentrale Anlaufstelle für den eigenen Twitch-Kanal: Live-Status und eingebetteter Player, letzte VODs und Clips, Sendeplan und Community-Links — die Inhalte holt sich die Seite automatisch über die Twitch-API, inklusive „Notify me when live“-Funktion.</p>
+
+  <div class="proj-grid reveal-scale">
+    <div>
+      <div class="shot-frame">
+        <div class="shot-bar">
+          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+          <span class="shot-url" data-url><span class="lock">●</span>edoeasy.live</span>
+        </div>
+        <img data-main src="img/edoeasy-live.webp" alt="edoeasy.live Startseite: Stream, Play, Community — Live-Status und letzte VODs" width="1600" height="1000" loading="lazy" decoding="async">
+      </div>
+    </div>
+    <aside class="proj-facts">
+      <div>
+        <div class="fact-label">Highlights</div>
+        <ul class="fact-list">
+          <li><strong>Twitch-API-Anbindung:</strong> Live-Status, VODs, Clips und Kategorie automatisch aktuell</li>
+          <li><strong>Benachrichtigungen:</strong> „Notify me when live“ mit Twitch-Login</li>
+          <li><strong>Ausgeliefert über den eigenen Stack:</strong> Container hinter Cloudflare Tunnel, eigene Domain</li>
+        </ul>
+      </div>
+      <div>
+        <div class="fact-label">Tech-Stack</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Python</span><span class="tl-tag">FastAPI</span><span class="tl-tag">Twitch API</span><span class="tl-tag">Jinja2</span><span class="tl-tag">Docker</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 06 DIESE WEBSITE -->
+<section class="section" id="website">
+  <div class="section-label reveal">// 06 · Meta</div>
+  <h2 class="section-title reveal">Diese Website</h2>
+  <div class="mini-card reveal-scale">
+    <h3>erdembasar.de</h3>
+    <p>Lebenslauf und Portfolio als schlanke, handgeschriebene Seite: reines HTML/CSS/JavaScript ohne Framework, gehostet auf GitHub Pages mit eigener Domain über Cloudflare. Suchmaschinenfreundlich (Schema.org, Sitemap), unter 100 KB pro Seite ohne Bilder — und die Screenshots auf dieser Seite entstanden automatisiert per Headless-Chromium aus dem eigenen Docker-Stack.</p>
+    <div class="tl-tags">
+      <span class="tl-tag">HTML / CSS / JS</span><span class="tl-tag">GitHub Pages</span><span class="tl-tag">Cloudflare DNS</span><span class="tl-tag">SEO</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="section">
+  <div class="cta-box reveal-scale">
+    <div>
+      <h3>Interesse an den Details?</h3>
+      <p>Ich erzähle gerne mehr über Architektur-Entscheidungen, Betrieb und was ich dabei gelernt habe.</p>
+    </div>
+    <div class="proj-links">
+      <a href="/#kontakt" class="btn btn-primary">Kontakt aufnehmen</a>
+      <a href="/" class="btn btn-ghost">← Zurück zum Lebenslauf</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Erdem Basar<span class="dot">·</span>System Engineer<span class="dot">·</span>Bottrop</p>
+  <p><a href="https://github.com/erdem-basar" target="_blank" rel="noopener">github.com/erdem-basar</a></p>
+</footer>
+
+<script>
+(function() {
+  // Scroll-Reveal mit Stagger (wie auf der Startseite)
+  var reveals = document.querySelectorAll('.reveal, .reveal-scale');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var parent = entry.target.parentElement;
+        var siblings = parent.querySelectorAll('.reveal, .reveal-scale');
+        var idx = Array.from(siblings).indexOf(entry.target);
+        entry.target.style.transitionDelay = Math.min(idx * 80, 400) + 'ms';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(function(el) { observer.observe(el); });
+
+  // Galerie: Thumbnail-Klick tauscht Hauptbild + URL-Zeile
+  document.querySelectorAll('.proj-grid').forEach(function(grid) {
+    var main = grid.querySelector('[data-main]');
+    var urlEl = grid.querySelector('[data-url]');
+    grid.querySelectorAll('.thumb').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        main.src = btn.dataset.src;
+        main.alt = btn.dataset.alt;
+        if (urlEl) urlEl.innerHTML = '<span class="lock">●</span>' + btn.dataset.shoturl;
+        grid.querySelectorAll('.thumb').forEach(function(b) { b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'); });
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
