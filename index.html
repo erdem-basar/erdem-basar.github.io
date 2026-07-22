@@ -592,6 +592,24 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(function(el) { observer.observe(el); });
 
+  // Reliable jump to anchor on direct load with hash (fixes scroll-behavior:smooth landing at top)
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  function jumpToHash() {
+    if (!location.hash) return;
+    var target = document.getElementById(location.hash.slice(1));
+    if (!target) return;
+    var html = document.documentElement;
+    var prev = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        target.scrollIntoView();
+        html.style.scrollBehavior = prev;
+      });
+    });
+  }
+  window.addEventListener('load', jumpToHash);
+
   // Toggle inline PDF viewer
   window.togglePdf = function(id, btn) {
     var el = document.getElementById(id);
