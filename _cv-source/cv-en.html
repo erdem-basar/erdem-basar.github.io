@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Erdem Basar — Curriculum Vitae</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0b1015;
+    --text: #c3ced9;
+    --head: #e6edf3;
+    --muted: #6f7a87;
+    --sub: #8b96a3;
+    --accent: #2dd4bf;
+    --rule: #232c36;
+  }
+  html, body {
+    background: var(--bg);
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    color: var(--text);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    background: var(--bg);
+    padding: 12mm 13mm 10mm;
+    position: relative;
+    overflow: hidden;
+  }
+  .page + .page { page-break-before: always; }
+
+  /* ── Header ───────────────────────────────── */
+  .masthead { display: flex; align-items: flex-end; justify-content: space-between; gap: 10mm; }
+  .name { font-size: 29pt; font-weight: 600; color: var(--head); letter-spacing: -.015em; line-height: 1.05; }
+  .role { font-size: 11.5pt; font-weight: 400; color: var(--accent); letter-spacing: .01em; margin-top: 2.5mm; }
+  .contact { text-align: right; font-size: 8.5pt; line-height: 1.75; color: var(--sub); white-space: nowrap; }
+  .contact a { color: var(--accent); text-decoration: none; }
+  .head-rule { height: 1px; background: var(--rule); margin: 6mm 0 7mm; }
+
+  /* ── Running header (page 2) ──────────────── */
+  .runhead { display: flex; align-items: baseline; justify-content: space-between; font-size: 8.5pt; color: var(--sub); }
+  .runhead .pg { color: var(--muted); }
+
+  /* ── Two-column body ──────────────────────── */
+  .cols { display: grid; grid-template-columns: 57mm 115mm; gap: 12mm; align-items: start; }
+
+  .sec + .sec { margin-top: 5.5mm; }
+  .sec-bar { width: 7mm; height: 1.5pt; background: var(--accent); margin-bottom: 2.6mm; }
+  .sec-label { font-size: 8pt; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 2.6mm; }
+
+  .profile p { font-size: 8.4pt; line-height: 1.54; color: var(--text); }
+  .profile p + p { margin-top: 2.4mm; }
+
+  .skill + .skill { margin-top: 2.5mm; }
+  .skill-name { font-size: 8.4pt; font-weight: 600; color: var(--head); margin-bottom: .8mm; }
+  .skill-val { font-size: 8.1pt; line-height: 1.5; color: var(--sub); }
+
+  .side-item { font-size: 8.8pt; line-height: 1.6; }
+  .side-title { font-size: 10pt; font-weight: 600; color: var(--head); }
+  .side-sub { font-size: 8.5pt; color: var(--muted); margin-top: .6mm; }
+  .side-body { font-size: 8.6pt; line-height: 1.62; color: var(--text); margin-top: 2.4mm; }
+  .side-plain { font-size: 8.8pt; line-height: 1.62; color: var(--text); }
+
+  /* ── Jobs ─────────────────────────────────── */
+  .job + .job { margin-top: 5.2mm; }
+  .job-title { font-size: 10.5pt; font-weight: 600; color: var(--head); line-height: 1.3; }
+  .job-title .sep { color: var(--rule); font-weight: 400; margin: 0 1.2mm; }
+  .job-title .employer { font-weight: 400; color: var(--sub); }
+  .job-meta { font-size: 8.2pt; color: var(--muted); margin-top: 1.1mm; margin-bottom: 2.4mm; }
+  .job-meta .dot { margin: 0 1.6mm; }
+  ul.duties { list-style: none; }
+  ul.duties li { font-size: 8.8pt; line-height: 1.55; color: var(--text); padding-left: 4.2mm; position: relative; }
+  ul.duties li + li { margin-top: 1.7mm; }
+  ul.duties li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- ══ PAGE 1 ══ -->
+<div class="page">
+  <div class="masthead">
+    <div>
+      <div class="name">Erdem Basar</div>
+      <div class="role">System Engineer</div>
+    </div>
+    <div class="contact">
+      Bottrop, North Rhine-Westphalia, Germany<br>
+      erdembasar@gmx.de<br>
+      <a href="https://erdembasar.de">erdembasar.de</a><br>
+      <a href="https://github.com/erdem-basar">github.com/erdem-basar</a>
+    </div>
+  </div>
+  <div class="head-rule"></div>
+
+  <div class="cols">
+    <!-- Sidebar -->
+    <div>
+      <div class="sec profile">
+        <div class="sec-bar"></div>
+        <div class="sec-label">Profile</div>
+        <p>System Engineer focused on Microsoft infrastructure, identity and automation. Hands-on experience administering complex Active Directory environments, Microsoft 365 / Microsoft Entra ID, Exchange Online (hybrid), Windows Server, Remote Desktop Services and Microsoft Intune for enterprise clients of a managed service provider.</p>
+        <p>Automates recurring administrative tasks consistently with PowerShell, among other things through a self-developed module for server lifecycle automation. Looking for a fully remote position in Microsoft infrastructure and modern workplace.</p>
+      </div>
+
+      <div class="sec">
+        <div class="sec-bar"></div>
+        <div class="sec-label">Core Competencies</div>
+        <div class="skill">
+          <div class="skill-name">Cloud &amp; Identity</div>
+          <div class="skill-val">Microsoft 365 (M365), Microsoft Entra ID (Azure AD), Entra Connect, hybrid identity, Exchange Online, Exchange Hybrid, Microsoft Teams, OneDrive, Microsoft Intune</div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Infrastructure</div>
+          <div class="skill-val">Active Directory, Group Policy (GPO), Windows Server 2016 / 2019 / 2022, DNS, DHCP, file and print servers, NTFS and share permissions, Remote Desktop Services (RDS), RD Connection Broker, FSLogix</div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Virtualisation &amp; Backup</div>
+          <div class="skill-val">VMware, Hyper-V, Veeam</div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Monitoring</div>
+          <div class="skill-val">PRTG</div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Automation</div>
+          <div class="skill-val">PowerShell (scripting and module development), Docker, self-hosting</div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Network &amp; Security</div>
+          <div class="skill-val">VPN troubleshooting (Sophos Connect), network troubleshooting, implementation of IT security policies</div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Tools &amp; Processes</div>
+          <div class="skill-val">ServiceNow, Remedy, Citrix Director, Remote Desktop, incident management, technical documentation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main column -->
+    <div>
+      <div class="sec">
+        <div class="sec-bar"></div>
+        <div class="sec-label">Professional Experience</div>
+
+        <div class="job">
+          <div class="job-title">System Engineer<span class="sep">|</span><span class="employer">Skaylink GmbH</span></div>
+          <div class="job-meta">03/2026 – present<span class="dot">·</span>Promoted from IT Service Specialist</div>
+          <ul class="duties">
+            <li>Administration of complex Active Directory structures including GPO, DNS and DHCP for several enterprise clients</li>
+            <li>Implementation and administration of Microsoft 365 and Azure services, including hybrid identities via Entra Connect (among them hard-match workflows and recovery after a DKM key loss during a server migration)</li>
+            <li>Operation and fault analysis of Remote Desktop environments: RD Connection Broker registration, FSLogix profile handling, session host incidents and Outlook MAPI connection limits</li>
+            <li>Development of a PowerShell module for server lifecycle automation (VM provisioning and decommissioning across VMware and Hyper-V, integrated with Active Directory, Veeam and PRTG)</li>
+            <li>Automation of recurring bulk tasks with PowerShell, for example password resets and user deactivation across multiple organisational units</li>
+            <li>Analysis of Intune app deployment failures and Teams add-in registration problems on session hosts</li>
+            <li>Support at 2nd and 3rd level, incident management and resolution of escalated incidents</li>
+            <li>Infrastructure monitoring, proactive troubleshooting and the creation and maintenance of technical documentation</li>
+            <li>Implementation of IT security policies at the client site</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-title">IT Service Specialist<span class="sep">|</span><span class="employer">Skaylink GmbH</span></div>
+          <div class="job-meta">06/2025 – 03/2026</div>
+          <ul class="duties">
+            <li>Administration of Active Directory (users, groups, OUs, group policies) as well as user and permission management</li>
+            <li>Setup, administration and maintenance of file servers (shares, NTFS and share permissions)</li>
+            <li>Administration of print servers including printers, drivers, queues and PowerShell-based port management</li>
+            <li>Configuration of scan-to-email and scan-to-folder on MFP systems (Toshiba, Ricoh, Konica Minolta, Develop)</li>
+            <li>Error analysis and troubleshooting in server and client environments, including Sophos Connect VPN</li>
+            <li>PowerShell scripting to automate administrative tasks</li>
+            <li>Direct point of contact for clients and users at 1st and 2nd level support through the ticketing system</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGE 2 ══ -->
+<div class="page">
+  <div class="runhead">
+    <div>Erdem Basar &nbsp;·&nbsp; System Engineer</div>
+    <div class="pg">Page 2</div>
+  </div>
+  <div class="head-rule" style="margin-top:4mm;"></div>
+
+  <div class="cols">
+    <!-- Sidebar -->
+    <div>
+      <div class="sec">
+        <div class="sec-bar"></div>
+        <div class="sec-label">Projects</div>
+        <div class="side-item">
+          <div class="side-title">Price Alert Tracker</div>
+          <div class="side-sub">Open-source web application (v1.7.0)</div>
+          <div class="side-body">Self-developed web application for automated price monitoring with 13 languages, selectable colour themes, Windows toast notifications, e-mail alerts and drag-and-drop group management. Self-hosted at preisalarm.erdembasar.de, source code on GitHub at erdem-basar/price-alert-tracker.</div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-bar"></div>
+        <div class="sec-label">Education</div>
+        <div class="side-item">
+          <div class="side-title" style="font-size:9.2pt;line-height:1.4;">Fachoberschulreife with qualification for upper secondary education</div>
+          <div class="side-sub">Hauptschule Welheim, Bottrop<span style="margin:0 1.4mm;">·</span>2002 – 2007</div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-bar"></div>
+        <div class="sec-label">Languages</div>
+        <div class="side-plain">German, English, Turkish</div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-bar"></div>
+        <div class="sec-label">IT Interests</div>
+        <div class="side-plain">Self-hosting and Docker, home networking, automation, cloud infrastructure</div>
+      </div>
+    </div>
+
+    <!-- Main column -->
+    <div>
+      <div class="sec">
+        <div class="sec-bar"></div>
+        <div class="sec-label">Professional Experience (continued)</div>
+
+        <div class="job">
+          <div class="job-title">Customer Service &amp; Support Center Agent<span class="sep">|</span><span class="employer">1&amp;1 Versatel</span></div>
+          <div class="job-meta">01/2025 – 04/2025<span class="dot">·</span>Essen</div>
+          <ul class="duties">
+            <li>Handling customer enquiries relating to service faults and monitoring tickets in the ticketing system (Remedy)</li>
+            <li>Communication with customers and partner companies about the status of fault resolution</li>
+            <li>Commissioning and coordinating field service technicians and escalating to the responsible specialist teams</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-title">1st and 2nd Level Support, BNP Paribas project<span class="sep">|</span><span class="employer">everience GmbH</span></div>
+          <div class="job-meta">05/2023 – 09/2024<span class="dot">·</span>Essen</div>
+          <ul class="duties">
+            <li>Qualified intake and independent handling of incidents and requests by phone and ticketing system (ServiceNow)</li>
+            <li>Troubleshooting across Windows, Microsoft Office, Exchange, Citrix Director, VPN, network and printers</li>
+            <li>Active Directory account administration as well as user and role management in various systems</li>
+            <li>Documentation and tracking of customer requests and adherence to defined problem-resolution processes</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-title">Call Center Agent<span class="sep">|</span><span class="employer">SutterDialog GmbH &amp; Co. KG</span></div>
+          <div class="job-meta">11/2022 – 04/2023<span class="dot">·</span>Essen</div>
+          <ul class="duties">
+            <li>Telephone advice and support for technical enquiries as well as recording and maintaining customer data</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-title">Scaffolder<span class="sep">|</span><span class="employer">Bilfinger Arnholdt GmbH</span></div>
+          <div class="job-meta">07/2017 – 07/2022<span class="dot">·</span>Gelsenkirchen</div>
+          <ul class="duties">
+            <li>Erection of support and suspended scaffolding including substructure and basic formwork, maintenance and logistics of scaffolding components</li>
+            <li>Working with site managers and other trades on large construction sites</li>
+          </ul>
+        </div>
+
+        <div class="job">
+          <div class="job-title">Scaffolder<span class="sep">|</span><span class="employer">GFG Dynamic Gerüstbau GmbH</span></div>
+          <div class="job-meta">2010 – 2017<span class="dot">·</span>Gelsenkirchen</div>
+          <ul class="duties">
+            <li>Erection of support and suspended scaffolding, maintenance, storage and transport of scaffolding components</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
