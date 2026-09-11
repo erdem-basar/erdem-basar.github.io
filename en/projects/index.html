@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projekte &amp; Homelab — Erdem Basar</title>
-  <meta name="description" content="Selbst entwickelte Software und produktive Homelab-Infrastruktur von Erdem Basar: Docker-Stack mit 37 Containern, Cloudflare Tunnel, Authelia 2FA, restic-Backups sowie vier eigene FastAPI-Anwendungen.">
+  <title>Projects &amp; Homelab — Erdem Basar</title>
+  <meta name="description" content="Self-built software and a production homelab run by Erdem Basar: a Docker stack with 37 containers, Cloudflare Tunnel, Authelia 2FA, restic backups and four self-developed FastAPI applications.">
   <meta name="author" content="Erdem Basar">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://erdembasar.de/projekte/">
+  <link rel="canonical" href="https://erdembasar.de/en/projects/">
   <link rel="alternate" hreflang="de" href="https://erdembasar.de/projekte/">
   <link rel="alternate" hreflang="en" href="https://erdembasar.de/en/projects/">
   <link rel="alternate" hreflang="x-default" href="https://erdembasar.de/projekte/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Projekte &amp; Homelab — Erdem Basar">
-  <meta property="og:description" content="37 Container in Produktion, vier selbst entwickelte Web-Apps, Zero-Trust-Zugriff und automatisierte Backups — mit Screenshots.">
-  <meta property="og:url" content="https://erdembasar.de/projekte/">
+  <meta property="og:title" content="Projects &amp; Homelab — Erdem Basar">
+  <meta property="og:description" content="37 containers in production, four self-built web apps, zero-trust access and automated backups — with screenshots.">
+  <meta property="og:url" content="https://erdembasar.de/en/projects/">
   <meta property="og:image" content="https://erdembasar.de/projekte/img/homelab-glance.webp">
-  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="de_DE">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Projekte &amp; Homelab — Erdem Basar">
-  <meta name="twitter:description" content="37 Container in Produktion, vier selbst entwickelte Web-Apps, Zero-Trust-Zugriff und automatisierte Backups.">
+  <meta name="twitter:title" content="Projects &amp; Homelab — Erdem Basar">
+  <meta name="twitter:description" content="37 containers in production, four self-built web apps, zero-trust access and automated backups.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Mulish:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -161,38 +162,39 @@
     .lang-switch a[aria-current="true"] { background: rgba(78,255,176,.12); color: var(--accent); }
   </style>
 </head>
+
 <body>
 
 <nav>
-  <a href="/" class="logo">EB</a>
+  <a href="/en/" class="logo">EB</a>
   <ul class="nav-links">
-    <li><a href="/#erfahrung">Erfahrung</a></li>
-    <li><a href="/#skills">Skills</a></li>
-    <li><a href="/projekte/" class="active" aria-current="page">Projekte</a></li>
-    <li><a href="/#lebenslauf">Lebenslauf</a></li>
-    <li><a href="/#dokumente">Dokumente</a></li>
-    <li><a href="/#kontakt">Kontakt</a></li>
+    <li><a href="/en/#experience">Experience</a></li>
+    <li><a href="/en/#skills">Skills</a></li>
+    <li><a href="/en/projects/" class="active" aria-current="page">Projects</a></li>
+    <li><a href="/en/#cv">CV</a></li>
+    <li><a href="/en/#documents">Documents</a></li>
+    <li><a href="/en/#contact">Contact</a></li>
   </ul>
   <div class="lang-switch" role="group" aria-label="Sprache / Language">
-    <a href="/projekte/" hreflang="de" lang="de" aria-current="true">DE</a>
-    <a href="/en/projects/" hreflang="en" lang="en">EN</a>
+    <a href="/projekte/" hreflang="de" lang="de">DE</a>
+    <a href="/en/projects/" hreflang="en" lang="en" aria-current="true">EN</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
   <div>
-    <div class="hero-eyebrow">// Portfolio · Alles läuft produktiv</div>
-    <h1>Projekte &amp;<br><em>Homelab</em></h1>
-    <p class="hero-desc">Keine Übungsprojekte: Dieser Stack läuft rund um die Uhr auf eigener Hardware — vier selbst entwickelte Web-Apps, Zero-Trust-Zugriff über Cloudflare, automatisierte Backups und Monitoring mit Push-Alerts aufs Handy.</p>
+    <div class="hero-eyebrow">// Portfolio · Everything runs in production</div>
+    <h1>Projects &amp;<br><em>Homelab</em></h1>
+    <p class="hero-desc">Not practice projects: this stack runs around the clock on my own hardware — four self-built web apps, zero-trust access through Cloudflare, automated backups and monitoring with push alerts to my phone.</p>
     <div class="hero-stats">
-      <span class="stat-pill"><b>37</b> Container</span>
-      <span class="stat-pill"><b>4</b> eigene Apps</span>
-      <span class="stat-pill"><b>24/7</b> Monitoring</span>
-      <span class="stat-pill"><b>2×</b> tägliche Backups</span>
+      <span class="stat-pill"><b>37</b> containers</span>
+      <span class="stat-pill"><b>4</b> own apps</span>
+      <span class="stat-pill"><b>24/7</b> monitoring</span>
+      <span class="stat-pill"><b>2×</b> daily backups</span>
     </div>
   </div>
-  <div class="term" aria-label="Terminal-Ausgabe: docker compose ps">
+  <div class="term" aria-label="Terminal output: docker compose ps">
     <div class="term-bar">
       <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
       <span class="term-title">powershell — docker</span>
@@ -218,9 +220,9 @@
 
 <!-- 01 HOMELAB -->
 <section class="section" id="homelab">
-  <div class="section-label reveal">// 01 · Infrastruktur</div>
+  <div class="section-label reveal">// 01 · Infrastructure</div>
   <h2 class="section-title reveal">Homelab — Self-Hosted Stack</h2>
-  <p class="section-desc reveal">37 Docker-Container in Produktion: Passwort-Manager, Dokumenten-Management mit OCR, Datei-Cloud, Workflow-Automation und die eigenen Apps — alle Dienste öffentlich erreichbar <strong>ohne ein einziges offenes Port-Forwarding</strong>. Der Traffic läuft durch einen Cloudflare Tunnel, sensible Dienste liegen zusätzlich hinter einem eigenen 2FA-Login-Portal (Authelia, TOTP).</p>
+  <p class="section-desc reveal">37 Docker containers in production: password manager, document management with OCR, file cloud, workflow automation and my own apps — every service reachable from the internet <strong>without a single open port forwarding</strong>. Traffic runs through a Cloudflare Tunnel, and sensitive services sit behind my own 2FA login portal (Authelia, TOTP).</p>
 
   <div class="proj-grid reveal-scale">
     <div>
@@ -229,16 +231,16 @@
           <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
           <span class="shot-url" data-url><span class="lock">●</span>dashboard.erdembasar.de</span>
         </div>
-        <img data-main src="img/homelab-glance.webp" alt="Glance-Dashboard des Homelabs: Uptime-Status aller Dienste, Kalender, Wetter und Tech-News auf einen Blick" width="1600" height="1000">
+        <img data-main src="/projekte/img/homelab-glance.webp" alt="Glance dashboard of the homelab: uptime status of all services, calendar, weather and tech news at a glance" width="1600" height="1000">
       </div>
-      <div class="shot-thumbs" role="group" aria-label="Weitere Screenshots: Homelab">
-        <button class="thumb" type="button" aria-pressed="true" data-src="img/homelab-glance.webp" data-shoturl="dashboard.erdembasar.de" data-alt="Glance-Dashboard des Homelabs: Uptime-Status aller Dienste, Kalender, Wetter und Tech-News auf einen Blick">
-          <img src="img/homelab-glance.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+      <div class="shot-thumbs" role="group" aria-label="More screenshots: homelab">
+        <button class="thumb" type="button" aria-pressed="true" data-src="/projekte/img/homelab-glance.webp" data-shoturl="dashboard.erdembasar.de" data-alt="Glance dashboard of the homelab: uptime status of all services, calendar, weather and tech news at a glance">
+          <img src="/projekte/img/homelab-glance.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
           <span class="thumb-label">Glance Dashboard</span>
         </button>
-        <button class="thumb" type="button" aria-pressed="false" data-src="img/homelab-dozzle.webp" data-shoturl="logs · dozzle (LAN)" data-alt="Dozzle-Übersicht: 37 laufende Container mit Live-CPU- und RAM-Metriken">
-          <img src="img/homelab-dozzle.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
-          <span class="thumb-label">Container-Logs (Dozzle)</span>
+        <button class="thumb" type="button" aria-pressed="false" data-src="/projekte/img/homelab-dozzle.webp" data-shoturl="logs · dozzle (LAN)" data-alt="Dozzle overview: 37 running containers with live CPU and RAM metrics">
+          <img src="/projekte/img/homelab-dozzle.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Container logs (Dozzle)</span>
         </button>
       </div>
     </div>
@@ -246,15 +248,15 @@
       <div>
         <div class="fact-label">Highlights</div>
         <ul class="fact-list">
-          <li><strong>Zero-Trust-Zugriff:</strong> Cloudflare Tunnel + Authelia-2FA-Portal, Reverse-Proxy mit Caddy (forward_auth)</li>
-          <li><strong>Backups:</strong> restic verschlüsselt auf zwei Ziele (lokal + Cloudflare R2), konsistente DB-Dumps, Restore-Tests, Dead-Man-Switch via Healthchecks</li>
-          <li><strong>Security-Alerts:</strong> PowerShell-Task wertet Windows-Event-Log und Container-Logs aus → Push aufs Handy mit „IP bannen“-Button, der Angreifer per n8n-Webhook direkt auf der Cloudflare-Edge sperrt</li>
-          <li><strong>Monitoring:</strong> Uptime Kuma, Beszel-Metriken, Dozzle-Logs, ntopng-Traffic-Analyse pro Container</li>
-          <li><strong>Wartung:</strong> Image-Update-Alerts (Diun), zentrale Log-Rotation, Healthchecks je Service</li>
+          <li><strong>Zero-trust access:</strong> Cloudflare Tunnel + Authelia 2FA portal, reverse proxy with Caddy (forward_auth)</li>
+          <li><strong>Backups:</strong> restic, encrypted, to two targets (local + Cloudflare R2), consistent DB dumps, restore tests, dead man's switch via Healthchecks</li>
+          <li><strong>Security alerts:</strong> a PowerShell task evaluates the Windows event log and container logs → push notification to my phone with a "ban IP" button that blocks the attacker at the Cloudflare edge via an n8n webhook</li>
+          <li><strong>Monitoring:</strong> Uptime Kuma, Beszel metrics, Dozzle logs, ntopng traffic analysis per container</li>
+          <li><strong>Maintenance:</strong> image update alerts (Diun), central log rotation, health checks per service</li>
         </ul>
       </div>
       <div>
-        <div class="fact-label">Tech-Stack</div>
+        <div class="fact-label">Tech stack</div>
         <div class="tl-tags">
           <span class="tl-tag">Docker Compose</span><span class="tl-tag">Cloudflare Tunnel</span><span class="tl-tag">Caddy</span><span class="tl-tag">Authelia 2FA</span><span class="tl-tag">restic</span><span class="tl-tag">Cloudflare R2</span><span class="tl-tag">n8n</span><span class="tl-tag">ntfy</span><span class="tl-tag">PowerShell</span><span class="tl-tag">Vaultwarden</span><span class="tl-tag">Paperless-ngx</span><span class="tl-tag">Seafile</span>
         </div>
@@ -269,11 +271,11 @@
 <section class="section" id="streamingtools">
   <div class="proj-head">
     <div>
-      <div class="section-label reveal">// 02 · Eigene Entwicklung</div>
+      <div class="section-label reveal">// 02 · Own development</div>
       <h2 class="section-title reveal">StreamingTools — Twitch Command Center</h2>
     </div>
   </div>
-  <p class="section-desc reveal">Meine größte Eigenentwicklung: eine Web-App, die einen kompletten Twitch-Kanal datengetrieben steuert. Sie sammelt rund um die Uhr Marktdaten über die Twitch-API, berechnet die besten Sendezeiten aus tausenden Messpunkten und verwaltet Titel, Kategorie und Tags live über EventSub — inklusive KI-Titel-Generator, automatischer Clip-Erkennung bei Chat-Hype und Discord-Ankündigungen.</p>
+  <p class="section-desc reveal">My largest own development: a web app that runs an entire Twitch channel on data. It collects market data through the Twitch API around the clock, calculates the best broadcast times from thousands of measurements and manages title, category and tags live via EventSub — including an AI title generator, automatic clip detection when the chat gets hyped, and Discord announcements.</p>
 
   <div class="proj-grid reveal-scale">
     <div>
@@ -282,27 +284,27 @@
           <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
           <span class="shot-url" data-url><span class="lock">●</span>streamingtools — Dashboard</span>
         </div>
-        <img data-main src="img/streamingtools-dashboard.webp" alt="StreamingTools-Dashboard: Live-Status, Kennzahlen, beste Streaming-Zeit und System-Status der Bots" width="1600" height="1000">
+        <img data-main src="/projekte/img/streamingtools-dashboard.webp" alt="StreamingTools dashboard: live status, key figures, best streaming time and system status of the bots" width="1600" height="1000">
       </div>
-      <div class="shot-thumbs" role="group" aria-label="Weitere Screenshots: StreamingTools">
-        <button class="thumb" type="button" aria-pressed="true" data-src="img/streamingtools-dashboard.webp" data-shoturl="streamingtools — Dashboard" data-alt="StreamingTools-Dashboard: Live-Status, Kennzahlen, beste Streaming-Zeit und System-Status der Bots">
-          <img src="img/streamingtools-dashboard.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+      <div class="shot-thumbs" role="group" aria-label="More screenshots: StreamingTools">
+        <button class="thumb" type="button" aria-pressed="true" data-src="/projekte/img/streamingtools-dashboard.webp" data-shoturl="streamingtools — Dashboard" data-alt="StreamingTools dashboard: live status, key figures, best streaming time and system status of the bots">
+          <img src="/projekte/img/streamingtools-dashboard.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
           <span class="thumb-label">Dashboard</span>
         </button>
-        <button class="thumb" type="button" aria-pressed="false" data-src="img/streamingtools-stream-manager.webp" data-shoturl="streamingtools — Stream Manager" data-alt="Stream Manager: Titel, Kategorie und Tags live per Twitch-API ändern, Presets und Activity-Feed über EventSub">
-          <img src="img/streamingtools-stream-manager.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+        <button class="thumb" type="button" aria-pressed="false" data-src="/projekte/img/streamingtools-stream-manager.webp" data-shoturl="streamingtools — Stream Manager" data-alt="Stream Manager: change title, category and tags live through the Twitch API, with presets and an EventSub activity feed">
+          <img src="/projekte/img/streamingtools-stream-manager.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
           <span class="thumb-label">Stream Manager</span>
         </button>
-        <button class="thumb" type="button" aria-pressed="false" data-src="img/streamingtools-timing.webp" data-shoturl="streamingtools — Timing Optimizer" data-alt="Stream Timing Optimizer: Discovery-Heatmap über Wochentage und Uhrzeiten aus 3382 gesammelten Datenpunkten">
-          <img src="img/streamingtools-timing.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
-          <span class="thumb-label">Timing-Heatmap</span>
+        <button class="thumb" type="button" aria-pressed="false" data-src="/projekte/img/streamingtools-timing.webp" data-shoturl="streamingtools — Timing Optimizer" data-alt="Stream Timing Optimizer: discovery heatmap across weekdays and hours from 3382 collected data points">
+          <img src="/projekte/img/streamingtools-timing.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Timing heatmap</span>
         </button>
-        <button class="thumb" type="button" aria-pressed="false" data-src="img/streamingtools-growth.webp" data-shoturl="streamingtools — Growth Tracker" data-alt="Growth Tracker: Zuschauer-Trends über 30 Sessions mit Wochenauswertung">
-          <img src="img/streamingtools-growth.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+        <button class="thumb" type="button" aria-pressed="false" data-src="/projekte/img/streamingtools-growth.webp" data-shoturl="streamingtools — Growth Tracker" data-alt="Growth Tracker: viewer trends across 30 sessions with weekly breakdown">
+          <img src="/projekte/img/streamingtools-growth.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
           <span class="thumb-label">Growth Tracker</span>
         </button>
-        <button class="thumb" type="button" aria-pressed="false" data-src="img/streamingtools-trend-radar.webp" data-shoturl="streamingtools — Trend Radar" data-alt="Trend Radar: Twitch-Kategorien nach Zuschauer-pro-Stream-Verhältnis, live aus der Twitch-API">
-          <img src="img/streamingtools-trend-radar.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+        <button class="thumb" type="button" aria-pressed="false" data-src="/projekte/img/streamingtools-trend-radar.webp" data-shoturl="streamingtools — Trend Radar" data-alt="Trend Radar: Twitch categories ranked by viewers-per-stream ratio, live from the Twitch API">
+          <img src="/projekte/img/streamingtools-trend-radar.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
           <span class="thumb-label">Trend Radar</span>
         </button>
       </div>
@@ -311,15 +313,15 @@
       <div>
         <div class="fact-label">Highlights</div>
         <ul class="fact-list">
-          <li><strong>Timing Optimizer:</strong> Heatmap der besten Sendezeiten aus tausenden automatisch gesammelten Viewer/Streamer-Messpunkten</li>
-          <li><strong>Stream Manager:</strong> Titel, Kategorie, Tags, Predictions und Werbung direkt aus der App — Events in Echtzeit über Twitch EventSub</li>
-          <li><strong>Clip Highlighter:</strong> erkennt Hype-Momente im Chat und erstellt automatisch Clips</li>
-          <li><strong>KI-Titel-Generator:</strong> Vorschläge auf Basis der aktuell erfolgreichsten Streams der Kategorie</li>
-          <li><strong>Raid-Tools:</strong> Raid-Kandidaten nach Größe, Sprache und Raid-Historie bewertet</li>
+          <li><strong>Timing Optimizer:</strong> heatmap of the best broadcast times, built from thousands of automatically collected viewer/streamer measurements</li>
+          <li><strong>Stream Manager:</strong> title, category, tags, predictions and ads straight from the app — events in real time via Twitch EventSub</li>
+          <li><strong>Clip Highlighter:</strong> detects hype moments in chat and creates clips automatically</li>
+          <li><strong>AI title generator:</strong> suggestions based on the currently most successful streams in the category</li>
+          <li><strong>Raid tools:</strong> raid candidates scored by size, language and raid history</li>
         </ul>
       </div>
       <div>
-        <div class="fact-label">Tech-Stack</div>
+        <div class="fact-label">Tech stack</div>
         <div class="tl-tags">
           <span class="tl-tag">Python</span><span class="tl-tag">FastAPI</span><span class="tl-tag">SQLite</span><span class="tl-tag">Twitch API</span><span class="tl-tag">EventSub / WebSocket</span><span class="tl-tag">OAuth 2.0</span><span class="tl-tag">Discord Webhooks</span><span class="tl-tag">Docker</span>
         </div>
@@ -334,15 +336,15 @@
 <section class="section" id="preisalarm">
   <div class="proj-head">
     <div>
-      <div class="section-label reveal">// 03 · Open Source</div>
-      <h2 class="section-title reveal">PreisAlarm — Preis-Tracking</h2>
+      <div class="section-label reveal">// 03 · Open source</div>
+      <h2 class="section-title reveal">PreisAlarm — Price Tracking</h2>
     </div>
     <div class="proj-links reveal">
-      <a href="https://preisalarm.erdembasar.de" target="_blank" rel="noopener" class="btn btn-primary">Webtool öffnen</a>
+      <a href="https://preisalarm.erdembasar.de" target="_blank" rel="noopener" class="btn btn-primary">Open web tool</a>
       <a href="https://github.com/erdem-basar/price-alert-tracker" target="_blank" rel="noopener" class="btn btn-ghost">⬡ GitHub</a>
     </div>
   </div>
-  <p class="section-desc reveal">Überwacht Wunschprodukte automatisch über Geizhals, PriceSpy &amp; Amazon und meldet Preisstürze per E-Mail, Discord und Web-Push. Gibt es in zwei Ausführungen: als <strong>Open-Source-Windows-App</strong> (MIT-Lizenz) und als <strong>selbst gehostetes Webtool</strong> mit Multi-User-Login, Preisverlauf und Budget-Suche.</p>
+  <p class="section-desc reveal">Watches wishlist products automatically across Geizhals, PriceSpy &amp; Amazon and reports price drops by e-mail, Discord and web push. It comes in two flavours: an <strong>open-source Windows app</strong> (MIT licence) and a <strong>self-hosted web tool</strong> with multi-user login, price history and budget search.</p>
 
   <div class="proj-grid reveal-scale">
     <div>
@@ -351,16 +353,16 @@
           <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
           <span class="shot-url" data-url><span class="lock">●</span>preisalarm.erdembasar.de</span>
         </div>
-        <img data-main src="img/preisalarm-landing.webp" alt="PreisAlarm-Startseite: Nie wieder den besten Preis verpassen — kostenlos und Open Source" width="1600" height="1000">
+        <img data-main src="/projekte/img/preisalarm-landing.webp" alt="PreisAlarm landing page: never miss the best price again — free and open source" width="1600" height="1000">
       </div>
-      <div class="shot-thumbs" role="group" aria-label="Weitere Screenshots: PreisAlarm">
-        <button class="thumb" type="button" aria-pressed="true" data-src="img/preisalarm-landing.webp" data-shoturl="preisalarm.erdembasar.de" data-alt="PreisAlarm-Startseite: Nie wieder den besten Preis verpassen — kostenlos und Open Source">
-          <img src="img/preisalarm-landing.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
-          <span class="thumb-label">Landingpage</span>
+      <div class="shot-thumbs" role="group" aria-label="More screenshots: PreisAlarm">
+        <button class="thumb" type="button" aria-pressed="true" data-src="/projekte/img/preisalarm-landing.webp" data-shoturl="preisalarm.erdembasar.de" data-alt="PreisAlarm landing page: never miss the best price again — free and open source">
+          <img src="/projekte/img/preisalarm-landing.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Landing page</span>
         </button>
-        <button class="thumb" type="button" aria-pressed="false" data-src="img/preisalarm-dashboard.webp" data-shoturl="preisalarm.erdembasar.de/dashboard" data-alt="PreisAlarm-Dashboard: aktive Alerts mit bestem Preis, Zielpreis und Preisdrop-Zähler">
-          <img src="img/preisalarm-dashboard.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
-          <span class="thumb-label">Alert-Dashboard</span>
+        <button class="thumb" type="button" aria-pressed="false" data-src="/projekte/img/preisalarm-dashboard.webp" data-shoturl="preisalarm.erdembasar.de/dashboard" data-alt="PreisAlarm dashboard: active alerts with best price, target price and price-drop counter">
+          <img src="/projekte/img/preisalarm-dashboard.webp" alt="" width="1600" height="1000" loading="lazy" decoding="async">
+          <span class="thumb-label">Alert dashboard</span>
         </button>
       </div>
     </div>
@@ -368,14 +370,14 @@
       <div>
         <div class="fact-label">Highlights</div>
         <ul class="fact-list">
-          <li><strong>Scraping-Engine:</strong> Selenium + Chromium headless prüft über 50 Shops im konfigurierbaren Intervall (APScheduler)</li>
-          <li><strong>Benachrichtigungen:</strong> E-Mail, Discord-Webhook und Web-Push (VAPID) — auch als installierbare PWA</li>
-          <li><strong>Preisverlauf &amp; Prognose:</strong> Charts pro Produkt, KI-gestützte Kaufempfehlung</li>
-          <li><strong>Multi-User:</strong> Registrierung, Passwort-Reset, Admin-Bereich, CSRF-Schutz</li>
+          <li><strong>Scraping engine:</strong> Selenium + headless Chromium checks more than 50 shops on a configurable interval (APScheduler)</li>
+          <li><strong>Notifications:</strong> e-mail, Discord webhook and web push (VAPID) — also installable as a PWA</li>
+          <li><strong>Price history &amp; forecast:</strong> charts per product, AI-assisted buy recommendation</li>
+          <li><strong>Multi-user:</strong> registration, password reset, admin area, CSRF protection</li>
         </ul>
       </div>
       <div>
-        <div class="fact-label">Tech-Stack</div>
+        <div class="fact-label">Tech stack</div>
         <div class="tl-tags">
           <span class="tl-tag">Python</span><span class="tl-tag">FastAPI</span><span class="tl-tag">Selenium</span><span class="tl-tag">APScheduler</span><span class="tl-tag">Web Push / PWA</span><span class="tl-tag">Docker</span><span class="tl-tag">MIT License</span>
         </div>
@@ -390,14 +392,14 @@
 <section class="section" id="inhouse">
   <div class="proj-head">
     <div>
-      <div class="section-label reveal">// 04 · Community-Plattform</div>
+      <div class="section-label reveal">// 04 · Community platform</div>
       <h2 class="section-title reveal">Predecessor Inhouse League</h2>
     </div>
     <div class="proj-links reveal">
-      <a href="https://inhouse.edoeasy.live" target="_blank" rel="noopener" class="btn btn-primary">Live ansehen</a>
+      <a href="https://inhouse.edoeasy.live" target="_blank" rel="noopener" class="btn btn-primary">View live</a>
     </div>
   </div>
-  <p class="section-desc reveal">Komplette Liga-Plattform für Community-Matches im MOBA Predecessor: Spieler stellen sich per Discord-Befehl in die Queue, ein <strong>eingebetteter Discord-Bot</strong> baut automatisch faire 5v5-Teams mit minimaler MMR-Differenz, Ergebnisse fließen in ein <strong>Glicko-2-Rating</strong> — das Leaderboard und alle Spielerprofile sind öffentlich auf der Website.</p>
+  <p class="section-desc reveal">A complete league platform for community matches in the MOBA Predecessor: players join the queue with a Discord command, an <strong>embedded Discord bot</strong> automatically builds fair 5v5 teams with minimal MMR difference, and results feed into a <strong>Glicko-2 rating</strong> — the leaderboard and all player profiles are public on the website.</p>
 
   <div class="proj-grid reveal-scale">
     <div>
@@ -406,22 +408,22 @@
           <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
           <span class="shot-url" data-url><span class="lock">●</span>inhouse.edoeasy.live</span>
         </div>
-        <img data-main src="img/inhouse-league.webp" alt="Inhouse League Startseite: Forge your rank in the arena — 5v5 Predecessor-Liga mit Glicko-2-Rating" width="1600" height="1000" loading="lazy" decoding="async">
+        <img data-main src="/projekte/img/inhouse-league.webp" alt="Inhouse League landing page: forge your rank in the arena — 5v5 Predecessor league with Glicko-2 rating" width="1600" height="1000" loading="lazy" decoding="async">
       </div>
     </div>
     <aside class="proj-facts">
       <div>
         <div class="fact-label">Highlights</div>
         <ul class="fact-list">
-          <li><strong>Ein Prozess, zwei Rollen:</strong> discord.py-Bot läuft als asyncio-Task im FastAPI-Lifespan — gleicher Event-Loop, gemeinsame Datenbank</li>
-          <li><strong>Matchmaking:</strong> Team-Balance per Brute-Force-Suche nach minimaler MMR-Differenz, Ready-Check im Channel</li>
-          <li><strong>Glicko-2 selbst implementiert</strong> und gegen das Referenzbeispiel des Erfinders verifiziert</li>
-          <li><strong>Draft-System:</strong> Pick/Ban-Seiten mit Zuschauer-Ansicht und OBS-Overlay für Streams</li>
-          <li><strong>Admin per Twitch-OAuth:</strong> Login-Whitelist statt Passwörter</li>
+          <li><strong>One process, two roles:</strong> the discord.py bot runs as an asyncio task inside the FastAPI lifespan — same event loop, shared database</li>
+          <li><strong>Matchmaking:</strong> team balancing by brute-force search for the smallest MMR difference, ready check in the channel</li>
+          <li><strong>Glicko-2 implemented from scratch</strong> and verified against the inventor's reference example</li>
+          <li><strong>Draft system:</strong> pick/ban pages with a spectator view and an OBS overlay for streams</li>
+          <li><strong>Admin via Twitch OAuth:</strong> a login whitelist instead of passwords</li>
         </ul>
       </div>
       <div>
-        <div class="fact-label">Tech-Stack</div>
+        <div class="fact-label">Tech stack</div>
         <div class="tl-tags">
           <span class="tl-tag">Python</span><span class="tl-tag">FastAPI</span><span class="tl-tag">discord.py</span><span class="tl-tag">Glicko-2</span><span class="tl-tag">SQLite</span><span class="tl-tag">Twitch OAuth</span><span class="tl-tag">Docker</span>
         </div>
@@ -436,14 +438,14 @@
 <section class="section" id="edoeasylive">
   <div class="proj-head">
     <div>
-      <div class="section-label reveal">// 05 · Web-Auftritt</div>
-      <h2 class="section-title reveal">edoeasy.live — Streamer-Hub</h2>
+      <div class="section-label reveal">// 05 · Web presence</div>
+      <h2 class="section-title reveal">edoeasy.live — Streamer Hub</h2>
     </div>
     <div class="proj-links reveal">
-      <a href="https://edoeasy.live" target="_blank" rel="noopener" class="btn btn-primary">Live ansehen</a>
+      <a href="https://edoeasy.live" target="_blank" rel="noopener" class="btn btn-primary">View live</a>
     </div>
   </div>
-  <p class="section-desc reveal">Zentrale Anlaufstelle für den eigenen Twitch-Kanal: Live-Status und eingebetteter Player, letzte VODs und Clips, Sendeplan und Community-Links — die Inhalte holt sich die Seite automatisch über die Twitch-API, inklusive „Notify me when live“-Funktion.</p>
+  <p class="section-desc reveal">The central hub for my own Twitch channel: live status and an embedded player, recent VODs and clips, the schedule and community links — the page pulls its content automatically from the Twitch API, including a "notify me when live" feature.</p>
 
   <div class="proj-grid reveal-scale">
     <div>
@@ -452,20 +454,20 @@
           <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
           <span class="shot-url" data-url><span class="lock">●</span>edoeasy.live</span>
         </div>
-        <img data-main src="img/edoeasy-live.webp" alt="edoeasy.live Startseite: Stream, Play, Community — Live-Status und letzte VODs" width="1600" height="1000" loading="lazy" decoding="async">
+        <img data-main src="/projekte/img/edoeasy-live.webp" alt="edoeasy.live landing page: stream, play, community — live status and recent VODs" width="1600" height="1000" loading="lazy" decoding="async">
       </div>
     </div>
     <aside class="proj-facts">
       <div>
         <div class="fact-label">Highlights</div>
         <ul class="fact-list">
-          <li><strong>Twitch-API-Anbindung:</strong> Live-Status, VODs, Clips und Kategorie automatisch aktuell</li>
-          <li><strong>Benachrichtigungen:</strong> „Notify me when live“ mit Twitch-Login</li>
-          <li><strong>Ausgeliefert über den eigenen Stack:</strong> Container hinter Cloudflare Tunnel, eigene Domain</li>
+          <li><strong>Twitch API integration:</strong> live status, VODs, clips and category always up to date</li>
+          <li><strong>Notifications:</strong> "notify me when live" with Twitch login</li>
+          <li><strong>Served from my own stack:</strong> a container behind the Cloudflare Tunnel on its own domain</li>
         </ul>
       </div>
       <div>
-        <div class="fact-label">Tech-Stack</div>
+        <div class="fact-label">Tech stack</div>
         <div class="tl-tags">
           <span class="tl-tag">Python</span><span class="tl-tag">FastAPI</span><span class="tl-tag">Twitch API</span><span class="tl-tag">Jinja2</span><span class="tl-tag">Docker</span>
         </div>
@@ -476,13 +478,13 @@
 
 <div class="divider"></div>
 
-<!-- 06 DIESE WEBSITE -->
+<!-- 06 THIS WEBSITE -->
 <section class="section" id="website">
   <div class="section-label reveal">// 06 · Meta</div>
-  <h2 class="section-title reveal">Diese Website</h2>
+  <h2 class="section-title reveal">This website</h2>
   <div class="mini-card reveal-scale">
     <h3>erdembasar.de</h3>
-    <p>Lebenslauf und Portfolio als schlanke, handgeschriebene Seite: reines HTML/CSS/JavaScript ohne Framework, gehostet auf GitHub Pages mit eigener Domain über Cloudflare. Suchmaschinenfreundlich (Schema.org, Sitemap), unter 100 KB pro Seite ohne Bilder — und die Screenshots auf dieser Seite entstanden automatisiert per Headless-Chromium aus dem eigenen Docker-Stack.</p>
+    <p>CV and portfolio as a lean, hand-written site: plain HTML/CSS/JavaScript with no framework, hosted on GitHub Pages with a custom domain through Cloudflare. Search-engine friendly (Schema.org, sitemap), under 100 KB per page without images — and the screenshots on this page were produced automatically by headless Chromium from my own Docker stack.</p>
     <div class="tl-tags">
       <span class="tl-tag">HTML / CSS / JS</span><span class="tl-tag">GitHub Pages</span><span class="tl-tag">Cloudflare DNS</span><span class="tl-tag">SEO</span>
     </div>
@@ -495,12 +497,12 @@
 <section class="section">
   <div class="cta-box reveal-scale">
     <div>
-      <h3>Interesse an den Details?</h3>
-      <p>Ich erzähle gerne mehr über Architektur-Entscheidungen, Betrieb und was ich dabei gelernt habe.</p>
+      <h3>Interested in the details?</h3>
+      <p>I am happy to talk about the architecture decisions, day-to-day operation and what I learned along the way.</p>
     </div>
     <div class="proj-links">
-      <a href="/#kontakt" class="btn btn-primary">Kontakt aufnehmen</a>
-      <a href="/" class="btn btn-ghost">← Zurück zum Lebenslauf</a>
+      <a href="/en/#contact" class="btn btn-primary">Get in touch</a>
+      <a href="/en/" class="btn btn-ghost">← Back to the CV</a>
     </div>
   </div>
 </section>
@@ -512,7 +514,7 @@
 
 <script>
 (function() {
-  // Scroll-Reveal mit Stagger (wie auf der Startseite)
+  // Scroll reveal with stagger (same as on the home page)
   var reveals = document.querySelectorAll('.reveal, .reveal-scale');
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
@@ -528,7 +530,7 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(function(el) { observer.observe(el); });
 
-  // Galerie: Thumbnail-Klick tauscht Hauptbild + URL-Zeile
+  // Gallery: clicking a thumbnail swaps the main image and the URL bar
   document.querySelectorAll('.proj-grid').forEach(function(grid) {
     var main = grid.querySelector('[data-main]');
     var urlEl = grid.querySelector('[data-url]');
