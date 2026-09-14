@@ -118,10 +118,16 @@
     .skill-row-label { font-family: var(--mono); font-size: .72rem; color: var(--muted); display: flex; align-items: center; gap: .5rem; }
     .skill-row-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
 
-    .soft-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: .75rem; margin-top: 2.5rem; }
-    .soft-item { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: .85rem 1.1rem; font-size: .85rem; color: var(--muted); display: flex; align-items: center; gap: .7rem; transition: all .2s; }
-    .soft-item:hover { border-color: rgba(78,255,176,.3); color: var(--text); }
-    .soft-item::before { content: '◆'; font-size: .45rem; color: var(--accent); flex-shrink: 0; }
+    .career-card { margin-top: 2.5rem; background: var(--card); border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: 10px; padding: 2rem 2.2rem; }
+    .career-card h3 { font-family: var(--syne); font-weight: 700; font-size: 1.2rem; margin-bottom: .5rem; }
+    .career-card p { font-size: .9rem; color: var(--muted); max-width: 720px; }
+    .career-path { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem .4rem; margin-top: 1.4rem; }
+    .career-path li { display: flex; align-items: center; gap: .4rem; }
+    .career-path li + li::before { content: '→'; color: var(--muted); font-size: .8rem; }
+    .career-step { font-family: var(--mono); font-size: .66rem; padding: .3rem .65rem; border-radius: 4px; border: 1px solid var(--border); color: var(--muted); white-space: nowrap; }
+    .career-step b { color: var(--text); font-weight: 500; margin-left: .35rem; }
+    .career-step.now { border-color: rgba(78,255,176,.4); background: rgba(78,255,176,.07); color: var(--accent); }
+    .career-step.now b { color: var(--accent); }
 
     .pdf-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 2.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease; }
     .pdf-box:hover { border-color: rgba(78,255,176,.25); box-shadow: 0 8px 30px rgba(78,255,176,.06); transform: translateY(-3px); }
@@ -414,10 +420,10 @@
 
 <div class="divider"></div>
 
-<!-- BILDUNG & SOFT SKILLS -->
+<!-- BILDUNG & WERDEGANG -->
 <div class="section">
-  <div class="section-label reveal">// 04 · Bildung &amp; Stärken</div>
-  <h2 class="section-title reveal">Bildung &amp; Soft Skills</h2>
+  <div class="section-label reveal">// 04 · Bildung &amp; Werdegang</div>
+  <h2 class="section-title reveal">Bildung &amp; Werdegang</h2>
   <div class="tl-item" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
     <div><div class="tl-date">2002 — 2007</div><div class="tl-loc">Bottrop</div></div>
     <div>
@@ -425,17 +431,17 @@
       <div class="tl-employer">Hauptschule Welheim, Bottrop</div>
     </div>
   </div>
-  <div class="soft-grid">
-    <div class="soft-item reveal">Strategisches Denken</div>
-    <div class="soft-item reveal">Aktives Zuhören</div>
-    <div class="soft-item reveal">Teamwork</div>
-    <div class="soft-item reveal">Flexibilität</div>
-    <div class="soft-item reveal">Präsentationsfähigkeit</div>
-    <div class="soft-item reveal">Business-Verständnis</div>
-    <div class="soft-item reveal">Motivation &amp; Ausdauer</div>
-    <div class="soft-item reveal">Emotionale Intelligenz</div>
-    <div class="soft-item reveal">Empathie</div>
-    <div class="soft-item reveal">Führungsqualität</div>
+  <div class="career-card reveal">
+    <h3>Quereinstieg in die IT</h3>
+    <p>Zwölf Jahre Gerüstbau, 2022 der Wechsel in den Support — und in knapp drei Jahren vom 1st-Level-Support zum System Engineer.</p>
+    <ol class="career-path" aria-label="Beruflicher Werdegang">
+      <li><span class="career-step">2010 – 2022<b>Gerüstbauer</b></span></li>
+      <li><span class="career-step">11/2022<b>Call Center Agent</b></span></li>
+      <li><span class="career-step">05/2023<b>1st &amp; 2nd Level Support</b></span></li>
+      <li><span class="career-step">01/2025<b>Service &amp; Support Center</b></span></li>
+      <li><span class="career-step">06/2025<b>IT Service Specialist</b></span></li>
+      <li><span class="career-step now">03/2026<b>System Engineer</b></span></li>
+    </ol>
   </div>
 </div>
 
@@ -501,7 +507,7 @@
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
       <div>
         <h3>Tabellarischer Lebenslauf</h3>
-        <p>Erdem Basar &nbsp;·&nbsp; System Engineer &nbsp;·&nbsp; Stand März 2026</p>
+        <p>Erdem Basar &nbsp;·&nbsp; System Engineer &nbsp;·&nbsp; Stand September 2026</p>
       </div>
       <div class="pdf-btns">
         <a href="javascript:void(0)" class="pdf-btn-view" onclick="togglePdf('pdf-lebenslauf',this)">👁 Ansehen</a>
